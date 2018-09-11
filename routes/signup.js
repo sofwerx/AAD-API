@@ -20,11 +20,11 @@ const addUser = (req, res, next) => {
       })
       .returning(['id'])
       .then((result) => {
-        const fstoken = jwt.sign({
+        const aad_token = jwt.sign({
           username: req.body.signupUsername,
           id: result[0].id
         }, KEY)
-        res.cookie('fstoken', fstoken, { httpOnly: true })
+        res.cookie('aad_token', aad_token, { maxAge: 90000000 })
         res.status(200).json({ message: 'success' })
       })
   }

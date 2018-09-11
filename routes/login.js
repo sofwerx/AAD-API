@@ -17,14 +17,14 @@ const loginUser = (req, res, next) => {
       .then((result) => {
         const storedHash = result[0].hashed_password
         bcrypt.compare(req.body.loginPassword, storedHash, (err, passwordsMatch) => {
-          if (passwordsMatch && req.cookies.fstoken === undefined) {
-            const fstoken = jwt.sign({
+          if (passwordsMatch && req.cookies.aad_token === undefined) {
+            const aad_token = jwt.sign({
               username: req.body.loginUsername,
               id: result[0].id 
             }, KEY)
-            res.cookie('fstoken', fstoken, { httpOnly: true })
+            res.cookie('aad_token', aad_token, {  maxAge: 90000000 })
             res.status(200).json({ message: 'success' })
-          } else if (passwordsMatch && req.cookies.fstoken !== undefined) {
+          } else if (passwordsMatch && req.cookies.aad_token !== undefined) {
             res.status(200).json({ message: 'success' })
           } else {
             res.status(200).json({ message: 'fail' })
