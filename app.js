@@ -8,7 +8,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
-var getCookieRouter = require('./routes/getCookie');
+var getCookieRouter = require('./routes/checkCookie');
 
 var app = express();
 
@@ -19,10 +19,10 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.disable('x-powered-by');
+app.use(cookieParser());
 
 
 app.use(function (req, res, next) {
@@ -42,7 +42,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
-app.use('/getCookie', getCookieRouter);
+app.use('/checkCookie', getCookieRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
