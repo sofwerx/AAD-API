@@ -18,8 +18,9 @@ module.exports = {
   schemas: {
     signup: Joi.object().keys({
       signupUsername: Joi.string().alphanum().min(8).max(30).required(),
-      signupEmail: Joi.string().email().required(),
-      signupPassword: Joi.string().min(8).max(30).required()
+      signupPassword: Joi.string().min(8).max(30).required(),
+      signupEmail: Joi.string().email().required()
+
     }),
     login: Joi.object().keys({
       loginUsername: Joi.string().alphanum().min(8).max(30).required(),

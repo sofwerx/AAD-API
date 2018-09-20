@@ -23,9 +23,7 @@ const loginUser = (req, res, next) => {
               id: result[0].id 
             }, KEY)
             res.cookie('aad_token', aad_token, {  maxAge: 90000000 })
-            res.status(200).json({ message: 'success' })
-          } else if (passwordsMatch && req.cookies.aad_token !== undefined) {
-            res.status(200).json({ message: 'success' })
+            res.status(200).json({ message: 'Success' })
           } else {
             res.status(200).json({ message: 'fail' })
           }
