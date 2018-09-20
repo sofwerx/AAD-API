@@ -12,6 +12,8 @@ var getCookieRouter = require('./routes/checkCookie');
 
 var app = express();
 
+const PUBLIC_URL = process.env.PUBLIC_URL || 'http://localhost:3001'
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,7 +28,7 @@ app.use(cookieParser());
 
 
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3001')
+  res.header('Access-Control-Allow-Origin', PUBLIC_URL)
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PATCH, DELETE, PUT')
