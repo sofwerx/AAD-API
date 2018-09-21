@@ -6,15 +6,17 @@ exports.seed = function(knex, Promise) {
      return knex('tools').insert([
        {
         id: 1,
-        name: 'TestTool1Name',
-        url: 'TestTool1URL',
+        name: 'SORTOE',
+        url: 'https://SORTOE_URL.com',
+        description: "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum",
         created_at: new Date('2016-06-29 14:26:16 UTC'),
         updated_at: new Date('2016-06-29 14:26:16 UTC')
       },
       {
        id: 2,
-       name: 'TestTool2Name',
-       url: 'TestTool2URL',
+       name: 'AtN',
+       url: 'https://AtN_URL.com',
+       description: "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum",
        created_at: new Date('2016-06-29 14:26:16 UTC'),
        updated_at: new Date('2016-06-29 14:26:16 UTC')
      },
@@ -22,6 +24,7 @@ exports.seed = function(knex, Promise) {
       id: 3,
       name: 'TestTool3Name',
       url: 'TestTool3URL',
+      description: "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum",
       created_at: new Date('2016-06-29 14:26:16 UTC'),
       updated_at: new Date('2016-06-29 14:26:16 UTC')
     }

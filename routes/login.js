@@ -25,7 +25,7 @@ const loginUser = (req, res, next) => {
             res.cookie('aad_token', aad_token, {  maxAge: 90000000 })
             res.status(200).json({ message: 'Success' })
           } else {
-            res.status(200).json({ message: 'fail' })
+            res.status(500).json({ message: 'fail' })
           }
         })
       })

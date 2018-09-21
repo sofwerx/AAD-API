@@ -10,6 +10,8 @@ var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
 var getCookieRouter = require('./routes/checkCookie');
 var getAllUsersRouter = require('./routes/getAllUsers');
+var getAllToolsRouter = require('./routes/getAllTools');
+
 
 var app = express();
 
@@ -46,6 +48,7 @@ app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/checkCookie', getCookieRouter);
 app.use('/getAllUsers', getAllUsersRouter);
+app.use('/getAllTools', getAllToolsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
