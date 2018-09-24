@@ -22,7 +22,7 @@ const loginUser = (req, res, next) => {
               username: req.body.loginUsername,
               id: result[0].id 
             }, KEY)
-            res.cookie('aad_token', aad_token, {  maxAge: 90000000 })
+            res.cookie('aad_token', aad_token )
             res.status(200).json({ message: 'Success' })
           } else {
             res.status(500).json({ message: 'fail' })

@@ -11,6 +11,9 @@ var loginRouter = require('./routes/login');
 var getCookieRouter = require('./routes/checkCookie');
 var getAllUsersRouter = require('./routes/getAllUsers');
 var getAllToolsRouter = require('./routes/getAllTools');
+var getAllReviewsRouter = require('./routes/getAllReviews');
+var postReviewsRouter = require('./routes/postReview');
+
 
 
 var app = express();
@@ -49,6 +52,8 @@ app.use('/login', loginRouter);
 app.use('/checkCookie', getCookieRouter);
 app.use('/getAllUsers', getAllUsersRouter);
 app.use('/getAllTools', getAllToolsRouter);
+app.use('/getAllReview', getAllReviewsRouter);
+app.use('/postReviewsRouter', postReviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -6,8 +6,10 @@ exports.seed = function(knex, Promise) {
      return knex('reviews').insert([
        {
         id: 1,
-        user_id: 1,
-        text: 'This is some test data.',
+        user_id: null,
+        tool_name: null,
+        text: null,
+        editable: null,
         binary: null,
         created_at: new Date('2016-06-29 14:26:16 UTC'),
         updated_at: new Date('2016-06-29 14:26:16 UTC')

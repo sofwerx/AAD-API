@@ -2,8 +2,10 @@ exports.up = (knex, Promise) => {
     return knex.schema.createTable('reviews', (table) => {
       // TABLE COLUMN DEFINITIONS HERE
       table.increments().primary()
-      table.integer('user_id').references('id').inTable('users').notNull().onDelete('CASCADE')
-      table.string('text', 255).nullable()
+      table.integer('user_id').references('id').inTable('users').nullable().onDelete('CASCADE')
+      table.string('tool_name').nullable()
+      table.boolean('editable').null()
+      table.string('text', 3000).nullable()
       table.binary('binary', 255).nullable()
       table.timestamps(true, true)
     })
