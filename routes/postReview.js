@@ -11,7 +11,8 @@ const postReview = (req, res, next) => {
       .insert({
         tool_name: req.body.toolName,
         user_id: payload.id,
-        text: req.body.text
+        text: req.body.text,
+        editable: false
       })
       .returning('*')
       .then((result) => {

@@ -4,7 +4,7 @@ exports.up = (knex, Promise) => {
       table.increments().primary()
       table.integer('user_id').references('id').inTable('users').nullable().onDelete('CASCADE')
       table.string('tool_name').nullable()
-      table.boolean('editable').null()
+      table.boolean('editable').nullable()
       table.string('text', 3000).nullable()
       table.binary('binary', 255).nullable()
       table.timestamps(true, true)
