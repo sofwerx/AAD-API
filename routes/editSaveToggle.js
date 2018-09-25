@@ -5,9 +5,7 @@ const knex = require('../knex')
 const jwt = require('jsonwebtoken')
 const KEY = process.env.JWT_KEY
 
-
-const editSaveToggle = (req, res, next) => {  
-  const payload = jwt.verify(req.cookies.aad_token, KEY)
+const editSaveToggle1 = (req, res, next) => { 
     return knex('reviews')
       .where('id', req.body.reviewId)
       .update({
@@ -15,9 +13,21 @@ const editSaveToggle = (req, res, next) => {
       })
       .returning('*')
       .then((result) => {
-        res.json(result)
+        next()
       })
   }
 
-router.patch('/', editSaveToggle)
+  const editSaveToggle2 = (req, res, next) => {  
+      return knex('reviews')
+        .whereNot('id', req.body.reviewId)
+        .update({
+            editable: false
+        })
+        .returning('*')
+        .then((result) => {
+          res.json(result)
+        })
+    }
+
+router.patch('/', editSaveToggle1, editSaveToggle2)
 module.exports = router
