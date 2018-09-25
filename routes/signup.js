@@ -8,7 +8,8 @@ const KEY = process.env.JWT_KEY
 
 const { validateBody, schemas } = require('../helpers/route-helpers')
 
-const addUser = (req, res, next) => {
+const signup = (req, res, next) => {
+    let  aad_token;
     const saltRounds = 10
     const plaintextPassword = req.body.signupPassword
     const hashedPass = bcrypt.hashSync(plaintextPassword, saltRounds)
@@ -20,14 +21,14 @@ const addUser = (req, res, next) => {
       })
       .returning(['id'])
       .then((result) => {
-        const aad_token = jwt.sign({
+        aad_token = jwt.sign({
           username: req.body.signupUsername,
           id: result[0].id
         }, KEY)
-        res.cookie('aad_token', aad_token, { maxAge: 90000000 })
-        res.status(200).json({ message: 'success' })
+        res.cookie('aad_token', aad_token )
+        res.end()
       })
   }
 
-  router.post('/', validateBody(schemas.signup), addUser)
+  router.post('/', validateBody(schemas.signup), signup)
   module.exports = router
