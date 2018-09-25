@@ -10,6 +10,7 @@ const getAllReviews = (req, res, next) => {
     return knex('reviews')
     .where('user_id', payload.id)
       .select('*')
+      .orderBy('id', 'asc')
       .then((result) => {
         res.json(result)
       })
