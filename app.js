@@ -14,6 +14,7 @@ var getAllToolsRouter = require('./routes/getAllTools');
 var getAllReviewsRouter = require('./routes/getAllReviews');
 var postReviewRouter = require('./routes/postReview');
 var editSaveToggleRouter = require('./routes/editSaveToggle');
+var updateReviewRouter = require('./routes/updateReview');
 
 
 
@@ -56,6 +57,7 @@ app.use('/getAllTools', getAllToolsRouter);
 app.use('/getAllReviews', getAllReviewsRouter);
 app.use('/postReview', postReviewRouter);
 app.use('/editSaveToggle', editSaveToggleRouter);
+app.use('/updateReview', updateReviewRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
