@@ -2,8 +2,6 @@ const express = require('express')
 
 const router = express.Router()
 const knex = require('../knex')
-const jwt = require('jsonwebtoken')
-const KEY = process.env.JWT_KEY
 
 const editSaveToggle1 = (req, res, next) => { 
     return knex('reviews')

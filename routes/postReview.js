@@ -1,5 +1,4 @@
 const express = require('express')
-const env = require('dotenv').config()
 const router = express.Router()
 const knex = require('../knex')
 const jwt = require('jsonwebtoken')
