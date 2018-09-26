@@ -1,16 +1,17 @@
 const express = require('express')
-const env = require('dotenv').config()
 
 const router = express.Router()
 const knex = require('../knex')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
+
 const KEY = process.env.JWT_KEY
 
 const { validateBody, schemas } = require('../helpers/route-helpers')
 
 const loginUser = (req, res, next) => {
+  console.log('HERE IS THE KEY......................................................................................................................................................................................', KEY)
     knex('users')
       .where('username', req.body.loginUsername)
       .select('hashed_password', 'id')

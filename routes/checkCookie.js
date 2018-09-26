@@ -1,8 +1,6 @@
 const express = require('express')
-const env = require('dotenv').config()
 const router = express.Router()
 const knex = require('../knex')
-const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const KEY = process.env.JWT_KEY
 

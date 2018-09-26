@@ -16,6 +16,7 @@ var postReviewRouter = require('./routes/postReview');
 var editSaveToggleRouter = require('./routes/editSaveToggle');
 var updateReviewRouter = require('./routes/updateReview');
 var deleteReviewRouter = require('./routes/deleteReview');
+var inviteToSlackRouter = require('./routes/inviteToSlack');
 
 
 
@@ -60,6 +61,7 @@ app.use('/postReview', postReviewRouter);
 app.use('/editSaveToggle', editSaveToggleRouter);
 app.use('/updateReview', updateReviewRouter);
 app.use('/deleteReview', deleteReviewRouter);
+app.use('/inviteToSlack', inviteToSlackRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
