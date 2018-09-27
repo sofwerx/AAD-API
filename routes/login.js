@@ -11,6 +11,7 @@ const KEY = process.env.JWT_KEY
 const { validateBody, schemas } = require('../helpers/route-helpers')
 
 const loginUser = (req, res, next) => {
+  console.log('HERE IS THE KEY......................................................................................................................................................................................', KEY)
     knex('users')
       .where('username', req.body.loginUsername)
       .select('hashed_password', 'id')
@@ -22,7 +23,7 @@ const loginUser = (req, res, next) => {
               username: req.body.loginUsername,
               id: result[0].id 
             }, KEY)
-            res.cookie('aad_token', aad_token, { path: '/', httpOnly: false })
+            res.cookie('aad_token', aad_token )
             res.status(200).json({ message: 'Success' })
           } else {
             res.status(500).json({ message: 'fail' })
