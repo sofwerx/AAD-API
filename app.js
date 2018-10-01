@@ -20,6 +20,7 @@ var inviteToSlackRouter = require('./routes/inviteToSlack');
 
 
 
+
 var app = express();
 
 const PUBLIC_URL = process.env.PUBLIC_URL || 'http://localhost:3001'
@@ -33,6 +34,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.raw({limit: 10240 * 1024, type: 'application/octet-stream'})); // 10 MB of attachments
 app.use(express.static(path.join(__dirname, 'public')));
 app.disable('x-powered-by');
 app.use(cookieParser());

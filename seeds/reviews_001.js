@@ -10,7 +10,6 @@ exports.seed = function(knex, Promise) {
         tool_name: null,
         text: null,
         editable: null,
-        binary: null,
         created_at: new Date('2016-06-29 14:26:16 UTC'),
         updated_at: new Date('2016-06-29 14:26:16 UTC')
       }
@@ -20,4 +19,4 @@ exports.seed = function(knex, Promise) {
        return knex.raw("SELECT setval('reviews_id_seq', (SELECT MAX(id) FROM reviews))")
      })
    })
-  }
+  } 
