@@ -82,4 +82,4 @@ COPY . ./
 
 ENV PATH=${PATH}:/app/node_modules/.bin/
 
-CMD knex migrate:latest && npm start
+CMD bash -c 'knex migrate:rollback ; knex migrate:latest ; knex seed:run; exec npm start'
