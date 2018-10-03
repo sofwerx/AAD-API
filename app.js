@@ -17,6 +17,8 @@ var editSaveToggleRouter = require('./routes/editSaveToggle');
 var updateReviewRouter = require('./routes/updateReview');
 var deleteReviewRouter = require('./routes/deleteReview');
 var inviteToSlackRouter = require('./routes/inviteToSlack');
+var getFileRouter = require('./routes/getFile');
+
 
 
 
@@ -33,6 +35,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.raw({limit: 10240 * 1024, type: 'application/octet-stream'})); // 10 MB of attachments
 app.use(express.static(path.join(__dirname, 'public')));
 app.disable('x-powered-by');
 app.use(cookieParser());
@@ -64,6 +67,7 @@ app.use('/editSaveToggle', editSaveToggleRouter);
 app.use('/updateReview', updateReviewRouter);
 app.use('/deleteReview', deleteReviewRouter);
 app.use('/inviteToSlack', inviteToSlackRouter);
+app.use('/getFile', getFileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

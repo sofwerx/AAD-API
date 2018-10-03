@@ -11,8 +11,9 @@ const getAllReviews = (req, res, next) => {
     .where('user_id', payload.id)
       .select('*')
       .orderBy('id', 'asc')
-      .then((result) => {
+      .then((result) => {        
         res.json(result)
+
       })
   }
 

@@ -6,7 +6,7 @@ exports.up = (knex, Promise) => {
       table.string('tool_name').nullable()
       table.boolean('editable').nullable()
       table.string('text', 3000).nullable()
-      table.binary('binary', 255).nullable()
+      table.string('path').nullable() 
       table.timestamps(true, true)
     })
   }

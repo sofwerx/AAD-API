@@ -3,7 +3,7 @@ exports.up = (knex, Promise) => {
       // TABLE COLUMN DEFINITIONS HERE
       table.increments().primary()
       table.string('name', 255).notNull().unique()
-      table.string('url', 255).notNull().unique()
+      table.string('url', 255).notNull()  
       table.string('description', 5000).notNull()
       table.timestamps(true, true)
     })
