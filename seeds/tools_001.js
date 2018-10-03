@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
        {
         id: 1,
         name: 'SORTOE',
-        url: 'https://SORTOE_URL.com',
+        url: 'https://sortoe.supermicro5.opswerx.org:65443/',
         description: "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum",
         created_at: new Date('2016-06-29 14:26:16 UTC'),
         updated_at: new Date('2016-06-29 14:26:16 UTC')
@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
       {
        id: 2,
        name: 'AtN',
-       url: 'https://AtN_URL.com',
+       url: 'www.google.com',
        description: "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum",
        created_at: new Date('2016-06-29 14:26:16 UTC'),
        updated_at: new Date('2016-06-29 14:26:16 UTC')
@@ -23,7 +23,7 @@ exports.seed = function(knex, Promise) {
      {
       id: 3,
       name: 'TestTool3Name',
-      url: 'TestTool3URL',
+      url: 'www.google.com',
       description: "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum",
       created_at: new Date('2016-06-29 14:26:16 UTC'),
       updated_at: new Date('2016-06-29 14:26:16 UTC')

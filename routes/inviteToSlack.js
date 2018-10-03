@@ -4,7 +4,6 @@ const fetch =   require('node-fetch');
 
 
 const inviteToSlack = (req, res, next) => {
-    console.log('REQ.BODY.EMAIL', req.body.email)
     const slackTeam = "aadspace";
     const token = process.env.SLACK_TOKEN; 
     
@@ -15,7 +14,6 @@ const inviteToSlack = (req, res, next) => {
         body: "token="+ token + "&email=" + req.body.email
     })
     .then(res => {
-        console.log(res)
         return res
     })
     .catch(err => console.log('Invite to Slack Failed', err));
