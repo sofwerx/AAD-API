@@ -11,9 +11,7 @@ const inviteToSlack = (req, res, next) => {
     return fetch(url, { 
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: "token="+ token + "&email=" + req.body.email,
-        credentials: 'include',
-        crossDomain: true
+        body: "token="+ token + "&email=" + req.body.email
     })
     .then(res => {
         return res
