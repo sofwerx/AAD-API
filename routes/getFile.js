@@ -3,6 +3,8 @@ const router = express.Router()
 const fs = require('fs');
 
 const getFile = (req, res, next) => {
+    res.set('Content-Disposition', 'inline');
+
     fs.readFile(
         `./public/uploads/${req.params.path}`, 'base64',
         (err, base64) => {
