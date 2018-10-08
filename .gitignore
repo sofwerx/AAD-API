@@ -62,3 +62,6 @@ typings/
 
 # we only want the .dmport.enc file
 .dmport
+
+
+/public/uploads
