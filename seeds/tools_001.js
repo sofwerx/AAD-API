@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
        {
         id: 1,
         name: 'SORTOE',
-        url: 'https://sortoe.supermicro5.opswerx.org:65443/',
+        url: 'https://sortoe.supermicro5.opswerx.org',
         description: "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum",
         created_at: new Date('2016-06-29 14:26:16 UTC'),
         updated_at: new Date('2016-06-29 14:26:16 UTC')
