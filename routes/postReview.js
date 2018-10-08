@@ -19,7 +19,7 @@ const postReview = (req, res, next) => {
     const payload = jwt.verify(req.cookies.aad_token, KEY)
     if(req.file){
         
-    knex('reviews')
+        knex('reviews')
         .insert({
             tool_name: req.body.toolName,
             user_id: payload.id,
