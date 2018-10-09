@@ -69,16 +69,34 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
 WORKDIR /app
 
 RUN apk add --no-cache git python make g++
-#RUN git clone -b v3.0.0 https://github.com/kelektiv/node.bcrypt.js /tmp/node.bcrypt.js && \
-#    cd /tmp/node.bcrypt.js && \
-#    npm install . && \
-#    npm run install && \
-#    cd /app && \
-#    rm -fr /tmp/node.bcrypt.js
+
+RUN git clone -b v3.0.0 https://github.com/kelektiv/node.bcrypt.js /tmp/node.bcrypt.js && \
+    cd /tmp/node.bcrypt.js && \
+    npm install . && \
+    npm run install && \
+    cd /app && \
+    rm -fr /tmp/node.bcrypt.js
+
+RUN npm rebuild --build-from-source bcrypt
 
 COPY package*json ./
 RUN npm install
 COPY . ./
+
+# Install everything (and clean up afterwards)
+RUN apk add --no-cache --virtual .gyp \
+    autoconf \
+    automake \
+    g++ \
+    libpng-dev \
+    libtool \
+    make \
+    nasm \
+    python \
+    git \
+  && npm i \
+  && npm rebuild bcrypt --build-from-source \
+  && apk del .gyp
 
 ENV PATH=${PATH}:/app/node_modules/.bin/
 
