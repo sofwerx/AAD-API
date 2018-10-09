@@ -9,19 +9,19 @@ const inviteToSlack = (req, res, next) => {
     
     const url = 'https://'+ slackTeam + '.slack.com/api/users.admin.invite';
     console.log("Inviting to " + slackTeam + " url=" + url);
-    return fetch(url, { 
+    fetch(url, { 
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: "token="+ token + "&email=" + req.body.email
     })
-    .then(res => {
-        res.json().then(json => {
-          console.log("Invited! json=" + JSON.stringify(json));
-	});
-        return res;
+    .then(slack_result => slack_result.json())
+    .then(json => {
+        console.log("Invited! json=" + JSON.stringify(json));
+        res.json(json);
     })
     .catch(err => {
     		console.log('Invite to Slack Failed', err)
+		res.status(500).json(JSON.stringify(err));
 	}
     );
 }
