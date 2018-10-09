@@ -100,4 +100,6 @@ RUN apk add --no-cache --virtual .gyp \
 
 ENV PATH=${PATH}:/app/node_modules/.bin/
 
+VOLUME /app/public/uploads
+
 CMD sh -c 'knex migrate:rollback ; knex migrate:latest ; knex seed:run; exec npm start'
