@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken')
 const KEY = process.env.JWT_KEY
 
 const { validateBody, schemas } = require('../helpers/route-helpers')
+const PUBLIC_URL = process.env.PUBLIC_URL || 'http://localhost:3001'
 
 const loginUser = (req, res, next) => {
     knex('users')
@@ -22,7 +23,7 @@ const loginUser = (req, res, next) => {
               username: req.body.loginUsername,
               id: result[0].id 
             }, KEY)
-            res.cookie('aad_token', aad_token, {httpOnly: false} )
+            res.cookie('aad_token', aad_token, {httpOnly: false, domain: PUBLIC_URL} )
             res.status(200).json({ message: 'Success' })
           } else {
             res.status(500).json({ message: 'fail' })

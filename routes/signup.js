@@ -7,6 +7,7 @@ const KEY = process.env.JWT_KEY
 
 
 const { validateBody, schemas } = require('../helpers/route-helpers')
+const PUBLIC_URL = process.env.PUBLIC_URL || 'http://localhost:3001'
 
 const signup = (req, res, next) => {
     let  aad_token;
@@ -25,7 +26,7 @@ const signup = (req, res, next) => {
           username: req.body.signupUsername,
           id: result[0].id
         }, KEY)
-        res.cookie('aad_token', aad_token, {httpOnly: false} )
+        res.cookie('aad_token', aad_token, {httpOnly: false, domain: PUBLIC_URL} )
         res.end()
       })
   }
