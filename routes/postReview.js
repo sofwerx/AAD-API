@@ -16,13 +16,14 @@ const upload = multer({storage})
 
 
 const postReview = (req, res, next) => {
-    const payload = jwt.verify(req.cookies.aad_token, KEY)
+    // const payload = jwt.verify(req.cookies.aad_token, KEY)
+    const username = req.body.username
     if(req.file){
         
         knex('reviews')
         .insert({
             tool_name: req.body.toolName,
-            user_id: payload.id,
+            username,
             text: req.body.text,
             editable: false,
             path: req.file.path
@@ -39,7 +40,7 @@ const postReview = (req, res, next) => {
         knex('reviews')
             .insert({
                 tool_name: req.body.toolName,
-                user_id: payload.id,
+                username,
                 text: req.body.text,
                 editable: false
               })

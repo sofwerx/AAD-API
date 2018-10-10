@@ -19,11 +19,11 @@ const loginUser = (req, res, next) => {
         const storedHash = result[0].hashed_password
         bcrypt.compare(req.body.loginPassword, storedHash, (err, passwordsMatch) => {
           if (passwordsMatch && req.cookies.aad_token === undefined) {
-            const aad_token = jwt.sign({
-              username: req.body.loginUsername,
-              id: result[0].id 
-            }, KEY)
-            res.cookie('aad_token', aad_token, {HttpOnly: false} )
+            // const aad_token = jwt.sign({
+            //   username: req.body.loginUsername,
+            //   id: result[0].id 
+            // }, KEY)
+            // res.cookie('aad_token', aad_token, {HttpOnly: false} )
             res.status(200).json({ message: 'Success' })
           } else {
             res.status(500).json({ message: 'fail' })

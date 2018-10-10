@@ -20,14 +20,14 @@ const signup = (req, res, next) => {
         email: req.body.signupEmail,
         hashed_password: hashedPass
       })
-      .returning(['id'])
+      .returning(['username'])
       .then((result) => {
-        aad_token = jwt.sign({
-          username: req.body.signupUsername,
-          id: result[0].id
-        }, KEY)
-        res.cookie('aad_token', aad_token, {HttpOnly: false} )
-        res.end()
+        // aad_token = jwt.sign({
+        //   username: req.body.signupUsername,
+        //   id: result[0].id
+        // }, KEY)
+        // res.cookie('aad_token', aad_token, {HttpOnly: false} )
+        res.json(result)
       })
   }
 
