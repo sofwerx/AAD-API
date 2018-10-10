@@ -8,7 +8,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
-var getCookieRouter = require('./routes/checkCookie');
 var getAllUsersRouter = require('./routes/getAllUsers');
 var getAllToolsRouter = require('./routes/getAllTools');
 var getAllReviewsRouter = require('./routes/getAllReviews');
@@ -59,7 +58,6 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
-app.use('/checkCookie', getCookieRouter);
 app.use('/getAllUsers', getAllUsersRouter);
 app.use('/getAllTools', getAllToolsRouter);
 app.use('/getAllReviews', getAllReviewsRouter);
