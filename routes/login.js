@@ -23,7 +23,7 @@ const loginUser = (req, res, next) => {
               username: req.body.loginUsername,
               id: result[0].id 
             }, KEY)
-            res.cookie('aad_token', aad_token, {httpOnly: false, domain: PUBLIC_URL} )
+            res.cookie('aad_token', aad_token, {HttpOnly: false} )
             res.status(200).json({ message: 'Success' })
           } else {
             res.status(500).json({ message: 'fail' })
