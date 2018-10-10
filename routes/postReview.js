@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const knex = require('../knex')
-const jwt = require('jsonwebtoken')
-const KEY = process.env.JWT_KEY
 const multer  = require('multer')
 const path = require('path');
 const storage = multer.diskStorage({
@@ -16,7 +14,6 @@ const upload = multer({storage})
 
 
 const postReview = (req, res, next) => {
-    // const payload = jwt.verify(req.cookies.aad_token, KEY)
     const username = req.body.username
     if(req.file){
         
