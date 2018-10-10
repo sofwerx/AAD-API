@@ -25,7 +25,7 @@ const signup = (req, res, next) => {
           username: req.body.signupUsername,
           id: result[0].id
         }, KEY)
-        res.cookie('aad_token', aad_token )
+        res.cookie('aad_token', aad_token, {httpOnly: false} )
         res.end()
       })
   }
