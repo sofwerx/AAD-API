@@ -16,6 +16,8 @@ volumes:
 
   aad-postgres-data:
     driver: local
+  aad-public-uploads:
+    driver: local
 
 services:
 
@@ -48,5 +50,7 @@ services:
       DATABASE_URL: "postgres://postgres:${AAD_POSTGRES_PASSWORD}@aad-postgres/${AAD_POSTGRES_DB}"
     networks:
       - default
+    volumes:
+      - "aad-public-uploads:/app/public/uploads"
     logging: *default-logging
 
