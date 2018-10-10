@@ -6,9 +6,10 @@ const jwt = require('jsonwebtoken')
 const KEY = process.env.JWT_KEY
 
 const getAllReviews = (req, res, next) => {
-    const payload = jwt.verify(req.cookies.aad_token, KEY)
+    // const payload = jwt.verify(req.cookies.aad_token, KEY)
+    const username = req.params.username
     return knex('reviews')
-    .where('user_id', payload.id)
+    .where('username', username)
       .select('*')
       .orderBy('id', 'asc')
       .then((result) => {        
@@ -17,5 +18,5 @@ const getAllReviews = (req, res, next) => {
       })
   }
 
-router.get('/', getAllReviews)
+router.get('/:username', getAllReviews)
 module.exports = router
