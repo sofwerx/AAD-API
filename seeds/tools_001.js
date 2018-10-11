@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
        {
         id: 1,
         name: 'SORTOE',
-        url: 'https://saad-api.minsky.devwerx.org/sortoe',
+        url: 'https://sortoe.supermicro5.opswerx.org/saad/',
         description: "Gathering and visualizing empirical data sets combined with SME data to inform decision making",
         created_at: new Date('2016-06-29 14:26:16 UTC'),
         updated_at: new Date('2016-06-29 14:26:16 UTC')
