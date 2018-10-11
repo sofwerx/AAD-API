@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var sortoeRouter = require('./routes/sortoe');
 var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
 var getAllUsersRouter = require('./routes/getAllUsers');
@@ -56,6 +57,7 @@ app.use(function (req, res, next) {
 })
 
 app.use('/', indexRouter);
+app.use('/sortoe', sortoeRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/getAllUsers', getAllUsersRouter);
