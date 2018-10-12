@@ -7,6 +7,7 @@
       SORTOE
   </body>
   <script>  
+    console.log('before setting local storage')
     localStorage.setItem('sortoeUser', JSON.stringify({
         active: true,
         admin: true,
@@ -18,7 +19,8 @@
         organization: "testorg",
         username: "admin"
     }))
-    
+    debugger
+    console.log('after setting local storage')
     window.open("https://sortoe.supermicro5.opswerx.org/","_self")
   </script>
 </html>
