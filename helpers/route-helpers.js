@@ -17,17 +17,17 @@ module.exports = {
   },
   schemas: {
     signup: Joi.object().keys({
-      signupUsername: Joi.string().alphanum().min(8).max(30).required(),
+      signupUsername: Joi.string().min(8).max(30).required(),
       signupPassword: Joi.string().min(8).max(30).required(),
       signupEmail: Joi.string().email().required()
 
     }),
     login: Joi.object().keys({
-      loginUsername: Joi.string().alphanum().min(8).max(30).required(),
+      loginUsername: Joi.string().min(8).max(30).required(),
       loginPassword: Joi.string().min(8).max(30).required()
     }),
     newEvent: Joi.object().keys({
-      content: Joi.string().alphanum().min(4).max(30).required(),
+      content: Joi.string().min(4).max(30).required(),
       description: Joi.string().max(60).required(),
       start: Joi.date().iso(),
       end: Joi.date().iso().required()
