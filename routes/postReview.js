@@ -14,8 +14,9 @@ const upload = multer({storage})
 
 
 const postReview = (req, res, next) => {
-    console.log('REQ.BODY.SHARABLE', req.body.sharable)
+    console.log('HERE IS THE REQ.BODY', req.body)
     const username = req.body.username
+
     if(req.file){
         
         knex('reviews')
@@ -25,7 +26,11 @@ const postReview = (req, res, next) => {
             text: req.body.text,
             editable: false,
             path: req.file.path,
-            sharable: req.body.sharable
+            sharable: req.body.sharable,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            jobTitle: req.body.jobTitle,
+            company: req.body.company
             })
             .returning('id')
             .then((result) => {
@@ -42,7 +47,11 @@ const postReview = (req, res, next) => {
                 username,
                 text: req.body.text,
                 editable: false,
-                sharable: req.body.sharable
+                sharable: req.body.sharable,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                jobTitle: req.body.jobTitle,
+                company: req.body.company
               })
               .returning('id')
               .then((result) => {

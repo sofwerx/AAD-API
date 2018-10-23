@@ -5,6 +5,10 @@ exports.up = (knex, Promise) => {
       table.string('username', 255).notNull().defaultTo('').unique()
       table.string('email', 255).notNull().unique()
       table.specificType('hashed_password', 'char(60)').notNull()
+      table.string('firstName').nullable() 
+      table.string('lastName').nullable() 
+      table.string('jobTitle').nullable() 
+      table.string('company').nullable() 
       table.timestamps(true, true)
     })
   }

@@ -14,7 +14,11 @@ const signup = (req, res, next) => {
       .insert({
         username: req.body.signupUsername,
         email: req.body.signupEmail,
-        hashed_password: hashedPass
+        hashed_password: hashedPass,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        jobTitle: req.body.jobTitle,
+        company: req.body.company
       })
       .returning(['username'])
       .then((result) => { 

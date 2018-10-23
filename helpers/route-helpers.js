@@ -19,7 +19,11 @@ module.exports = {
     signup: Joi.object().keys({
       signupUsername: Joi.string().min(8).max(30).required(),
       signupPassword: Joi.string().min(8).max(30).required(),
-      signupEmail: Joi.string().email().required()
+      signupEmail: Joi.string().email().required(),
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required(),
+      jobTitle: Joi.string().required(),
+      company: Joi.string().required(),
 
     }),
     login: Joi.object().keys({
