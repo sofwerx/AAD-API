@@ -14,6 +14,7 @@ const upload = multer({storage})
 
 
 const postReview = (req, res, next) => {
+    console.log('REQ.BODY.SHARABLE', req.body.sharable)
     const username = req.body.username
     if(req.file){
         
@@ -23,7 +24,8 @@ const postReview = (req, res, next) => {
             username,
             text: req.body.text,
             editable: false,
-            path: req.file.path
+            path: req.file.path,
+            sharable: req.body.sharable
             })
             .returning('id')
             .then((result) => {
@@ -39,7 +41,8 @@ const postReview = (req, res, next) => {
                 tool_name: req.body.toolName,
                 username,
                 text: req.body.text,
-                editable: false
+                editable: false,
+                sharable: req.body.sharable
               })
               .returning('id')
               .then((result) => {

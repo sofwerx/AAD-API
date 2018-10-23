@@ -63,7 +63,7 @@ app.use('/getAllUsers', getAllUsersRouter);
 app.use('/getAllTools', getAllToolsRouter);
 app.use('/getAllReviews', getAllReviewsRouter);
 app.use('/getAllPublicReviews', getAllPublicReviewsRouter);
-app.use('/PublicpostReview', postReviewRouter);
+app.use('/postReview', postReviewRouter);
 app.use('/editSaveToggle', editSaveToggleRouter);
 app.use('/updateReview', updateReviewRouter);
 app.use('/deleteReview', deleteReviewRouter);
