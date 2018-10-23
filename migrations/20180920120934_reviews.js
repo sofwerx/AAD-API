@@ -5,6 +5,7 @@ exports.up = (knex, Promise) => {
       table.string('username').references('username').inTable('users').nullable().onDelete('CASCADE')
       table.string('tool_name').nullable()
       table.boolean('editable').nullable()
+      table.boolean('sharable').nullable()
       table.string('text', 3000).nullable()
       table.string('path').nullable() 
       table.timestamps(true, true)
