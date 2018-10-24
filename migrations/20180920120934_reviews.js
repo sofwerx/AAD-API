@@ -11,6 +11,7 @@ exports.up = (knex, Promise) => {
       table.string('lastName').nullable() 
       table.string('jobTitle').nullable() 
       table.string('company').nullable() 
+      table.integer('rating').nullable() 
       table.string('path').nullable() 
       table.timestamps(true, true)
     })
