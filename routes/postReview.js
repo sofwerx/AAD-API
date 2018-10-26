@@ -14,7 +14,9 @@ const upload = multer({storage})
 
 
 const postReview = (req, res, next) => {
+    console.log('HERE IS THE REQ.BODY', req.body)
     const username = req.body.username
+
     if(req.file){
         
         knex('reviews')
@@ -23,7 +25,13 @@ const postReview = (req, res, next) => {
             username,
             text: req.body.text,
             editable: false,
-            path: req.file.path
+            path: req.file.path,
+            sharable: req.body.sharable,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            jobTitle: req.body.jobTitle,
+            company: req.body.company,
+            rating: req.body.rating
             })
             .returning('id')
             .then((result) => {
@@ -39,7 +47,13 @@ const postReview = (req, res, next) => {
                 tool_name: req.body.toolName,
                 username,
                 text: req.body.text,
-                editable: false
+                editable: false,
+                sharable: req.body.sharable,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                jobTitle: req.body.jobTitle,
+                company: req.body.company,
+                rating: req.body.rating
               })
               .returning('id')
               .then((result) => {

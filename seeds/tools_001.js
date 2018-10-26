@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
       },
       {
        id: 2,
-       name: 'AtN',
+       name: 'ATN',
        url: 'www.google.com',
        description: "Lorem Ispum Attack the Network Lorem Ispum Keep Attacking Lorem Ispum Network Lorem Ispum Attack.",
        created_at: new Date('2016-06-29 14:26:16 UTC'),
