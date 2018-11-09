@@ -19,7 +19,7 @@ const updateReview = (req, res, next) => {
       .where('id', req.body.reviewId)
         .update({
             tool_name: req.body.toolName,
-            text: req.body.text,
+            text: req.body.textInput,
             path: req.file.path,
             sharable: req.body.sharable,
             rating: req.body.rating
@@ -36,7 +36,7 @@ const updateReview = (req, res, next) => {
       .where('id', req.body.reviewId)
       .update({
           tool_name: req.body.toolName,
-          text: req.body.text,
+          text: req.body.textInput,
           sharable: req.body.sharable,
           rating: req.body.rating
       })

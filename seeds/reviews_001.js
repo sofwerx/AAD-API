@@ -6,9 +6,13 @@ exports.seed = function(knex, Promise) {
      return knex('reviews').insert([
        {
         id: 1,
-        username: 'mlembke1',
+        username: 'mlembke2',
         tool_name: 'SORTOE',
         text: 'awesome',
+        firstName: "Mitch",
+        lastName: "Lembke",
+        jobTitle: "Web Developer",
+        company: "ISPA Technology",
         editable: false,
         sharable: true,
         created_at: new Date('2016-06-29 14:26:16 UTC'),
