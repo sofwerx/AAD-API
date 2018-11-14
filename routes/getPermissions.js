@@ -3,21 +3,10 @@ const express = require('express')
 const router = express.Router()
 const knex = require('../knex')
 
-let role
-const getRole = (req, res, next) => {
-    return knex('users')
-    .select("role")
-    .where('username', req.params.username)
-        .then((result) => {
-        role = result[0].role
-        next()
-        })
-  }
-
 const getPermissions = (req, res, next) => {
     return knex('permissions')
     .select("read", "write", "publish")
-    .where('role', role)
+    .where('role', req.params.role)
         .then((result) => {
             let resultObj = result[0]
             let permissions = []
@@ -28,5 +17,5 @@ const getPermissions = (req, res, next) => {
         })
 }
 
-router.get('/:username', getRole, getPermissions)
+router.get('/:role', getPermissions)
 module.exports = router
