@@ -20,7 +20,7 @@ var deleteReviewRouter = require('./routes/deleteReview');
 var inviteToSlackRouter = require('./routes/inviteToSlack');
 var getFileRouter = require('./routes/getFile');
 var removeFileRouter = require('./routes/removeFile');
-var authorizeUserRouter = require('./routes/authorizeUser');
+var getPermissionsRouter = require('./routes/getPermissions');
 
 
 
@@ -73,7 +73,7 @@ app.use('/deleteReview', deleteReviewRouter);
 app.use('/inviteToSlack', inviteToSlackRouter);
 app.use('/getFile', getFileRouter);
 app.use('/removeFile', removeFileRouter);
-app.use('/authorizeUser', authorizeUserRouter);
+app.use('/getPermissions', getPermissionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

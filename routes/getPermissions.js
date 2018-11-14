@@ -14,7 +14,7 @@ const getRole = (req, res, next) => {
         })
   }
 
-const authorizeUser = (req, res, next) => {
+const getPermissions = (req, res, next) => {
     return knex('permissions')
     .select("read", "write", "publish")
     .where('role', role)
@@ -28,5 +28,5 @@ const authorizeUser = (req, res, next) => {
         })
 }
 
-router.get('/:username', getRole, authorizeUser)
+router.get('/:username', getRole, getPermissions)
 module.exports = router
