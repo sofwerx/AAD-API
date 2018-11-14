@@ -7,6 +7,7 @@ exports.seed = function(knex, Promise) {
        {
         id: 1,
         username: 'testUser1',
+        role: "manager",
         email: 'testUser1@gmail.com',
         hashed_password: '$2a$12$C9AYYmcLVGYlGoO4vSZTPud9ArJwbGRsJ6TUsNULzR48z8fOnTXbS',  // youreawizard
         created_at: new Date('2016-06-29 14:26:16 UTC'),
@@ -16,6 +17,7 @@ exports.seed = function(knex, Promise) {
        id: 2,
        username: 'testUser2',
        email: 'testUser2@gmail.com',
+       role: "writer",
        hashed_password: '$2a$12$C9AYYmcLVGYlGoO4vSZTPud9ArJwbGRsJ6TUsNULzR48z8fOnTXbS',  // youreawizard
        created_at: new Date('2016-06-29 14:26:16 UTC'),
        updated_at: new Date('2016-06-29 14:26:16 UTC')
@@ -23,6 +25,7 @@ exports.seed = function(knex, Promise) {
      {
       id: 3,
       username: 'testUser3',
+      role: "guest",
       email: 'testUser3@gmail.com',
       hashed_password: '$2a$12$C9AYYmcLVGYlGoO4vSZTPud9ArJwbGRsJ6TUsNULzR48z8fOnTXbS',  // youreawizard
       created_at: new Date('2016-06-29 14:26:16 UTC'),

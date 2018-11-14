@@ -7,21 +7,26 @@ let role
 const getRole = (req, res, next) => {
     return knex('users')
     .select("role")
-    .where('username', req.body.username)
+    .where('username', req.params.username)
         .then((result) => {
-        role = result.role
+        role = result[0].role
+        next()
         })
   }
 
 const authorizeUser = (req, res, next) => {
-    return knex('permissons')
+    return knex('permissions')
     .select("read", "write", "publish")
     .where('role', role)
         .then((result) => {
-            
-            res.send(result)
+            let resultObj = result[0]
+            let permissions = []
+            for(let key in resultObj) {
+                resultObj[key] ? permissions.push(key) : null
+            }
+            res.send(permissions)
         })
 }
 
-router.delete('/', getRole, authorizeUser)
+router.get('/:username', getRole, authorizeUser)
 module.exports = router

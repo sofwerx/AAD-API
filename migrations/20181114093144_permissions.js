@@ -3,9 +3,9 @@ exports.up = (knex, Promise) => {
       // TABLE COLUMN DEFINITIONS HERE
       table.increments().primary()
       table.string('role', 255).notNull().unique()
-      table.string('read', 255).notNull()  
-      table.string('write', 255).notNull()
-      table.string('publish', 255).notNull()
+      table.boolean('read', 255).notNull()  
+      table.boolean('write', 255).notNull()
+      table.boolean('publish', 255).notNull()
       table.timestamps(true, true)
     })
   }

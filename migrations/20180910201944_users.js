@@ -9,6 +9,7 @@ exports.up = (knex, Promise) => {
       table.string('lastName').nullable() 
       table.string('jobTitle').nullable() 
       table.string('company').nullable() 
+      table.string('role').nullable() 
       table.timestamps(true, true)
     })
   }
