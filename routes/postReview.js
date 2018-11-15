@@ -13,8 +13,7 @@ const upload = multer({storage})
 
 
 
-const postReview = (req, res, next) => {
-    console.log('HERE IS THE REQ.BODY', req.body)
+const postReview = (req, res, next) => {    
     const username = req.body.username
 
     if(req.file){
@@ -31,7 +30,12 @@ const postReview = (req, res, next) => {
             lastName: req.body.lastName,
             jobTitle: req.body.jobTitle,
             company: req.body.company,
-            rating: req.body.rating
+            rating: req.body.rating,
+            answer_1: req.body.answer_1,
+            answer_2: req.body.answer_2,
+            answer_3: req.body.answer_3,
+            answer_4: req.body.answer_4,
+            answer_5: req.body.answer_5
             })
             .returning('id')
             .then((result) => {
@@ -53,7 +57,12 @@ const postReview = (req, res, next) => {
                 lastName: req.body.lastName,
                 jobTitle: req.body.jobTitle,
                 company: req.body.company,
-                rating: req.body.rating
+                rating: req.body.rating,
+                answer_1: req.body.answer_1,
+                answer_2: req.body.answer_2,
+                answer_3: req.body.answer_3,
+                answer_4: req.body.answer_4,
+                answer_5: req.body.answer_5
               })
               .returning('id')
               .then((result) => {

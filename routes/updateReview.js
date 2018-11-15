@@ -19,10 +19,15 @@ const updateReview = (req, res, next) => {
       .where('id', req.body.reviewId)
         .update({
             tool_name: req.body.toolName,
-            text: req.body.text,
+            text: req.body.textInput,
             path: req.file.path,
             sharable: req.body.sharable,
-            rating: req.body.rating
+            rating: req.body.rating,
+            answer_1: req.body.answer_1,
+            answer_2: req.body.answer_2,
+            answer_3: req.body.answer_3,
+            answer_4: req.body.answer_4,
+            answer_5: req.body.answer_5
             })
         .returning('id')
         .then((result) => {
@@ -36,9 +41,14 @@ const updateReview = (req, res, next) => {
       .where('id', req.body.reviewId)
       .update({
           tool_name: req.body.toolName,
-          text: req.body.text,
+          text: req.body.textInput,
           sharable: req.body.sharable,
-          rating: req.body.rating
+          rating: req.body.rating,
+          answer_1: req.body.answer_1,
+          answer_2: req.body.answer_2,
+          answer_3: req.body.answer_3,
+          answer_4: req.body.answer_4,
+          answer_5: req.body.answer_5
       })
       .returning('*')
       .then((result) => {

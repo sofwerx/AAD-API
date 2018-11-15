@@ -6,28 +6,16 @@ exports.seed = function(knex, Promise) {
      return knex('users').insert([
        {
         id: 1,
-        username: 'testUser1',
-        email: 'testUser1@gmail.com',
+        username: 'mlembke1',
+        email: 'mitchell.lembke@gmail.com',
+        firstName: "Mitch",
+        lastName: "Lembke",
+        jobTitle: "Web Developer",
+        company: "ISPA Technology",
         hashed_password: '$2a$12$C9AYYmcLVGYlGoO4vSZTPud9ArJwbGRsJ6TUsNULzR48z8fOnTXbS',  // youreawizard
         created_at: new Date('2016-06-29 14:26:16 UTC'),
         updated_at: new Date('2016-06-29 14:26:16 UTC')
-      },
-      {
-       id: 2,
-       username: 'testUser2',
-       email: 'testUser2@gmail.com',
-       hashed_password: '$2a$12$C9AYYmcLVGYlGoO4vSZTPud9ArJwbGRsJ6TUsNULzR48z8fOnTXbS',  // youreawizard
-       created_at: new Date('2016-06-29 14:26:16 UTC'),
-       updated_at: new Date('2016-06-29 14:26:16 UTC')
-     },
-     {
-      id: 3,
-      username: 'testUser3',
-      email: 'testUser3@gmail.com',
-      hashed_password: '$2a$12$C9AYYmcLVGYlGoO4vSZTPud9ArJwbGRsJ6TUsNULzR48z8fOnTXbS',  // youreawizard
-      created_at: new Date('2016-06-29 14:26:16 UTC'),
-      updated_at: new Date('2016-06-29 14:26:16 UTC')
-    }
+      }
      ])
      .then(function() {
        // Moves id column (PK) auto-incrementer to correct value after inserts
