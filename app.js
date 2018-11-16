@@ -1,31 +1,32 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var signupRouter = require('./routes/signup');
-var loginRouter = require('./routes/login');
-var getAllUsersRouter = require('./routes/getAllUsers');
-var getUserInfoRouter = require('./routes/getUserInfo');
-var getAllToolsRouter = require('./routes/getAllTools');
-var getAllReviewsRouter = require('./routes/getAllReviews');
-var getAllPublicReviewsRouter = require('./routes/getAllPublicReviews');
-var postReviewRouter = require('./routes/postReview');
-var editSaveToggleRouter = require('./routes/editSaveToggle');
-var updateReviewRouter = require('./routes/updateReview');
-var deleteReviewRouter = require('./routes/deleteReview');
-var inviteToSlackRouter = require('./routes/inviteToSlack');
-var getFileRouter = require('./routes/getFile');
-var removeFileRouter = require('./routes/removeFile');
-var getPermissionsRouter = require('./routes/getPermissions');
+const indexRouter = require('./routes/index');
+const signupRouter = require('./routes/signup');
+const loginRouter = require('./routes/login');
+const getAllUsersRouter = require('./routes/getAllUsers');
+const getUserInfoRouter = require('./routes/getUserInfo');
+const getAllToolsRouter = require('./routes/getAllTools');
+const getAllReviewsRouter = require('./routes/getAllReviews');
+const getAllPublicReviewsRouter = require('./routes/getAllPublicReviews');
+const postReviewRouter = require('./routes/postReview');
+const editSaveToggleRouter = require('./routes/editSaveToggle');
+const updateReviewRouter = require('./routes/updateReview');
+const deleteReviewRouter = require('./routes/deleteReview');
+const inviteToSlackRouter = require('./routes/inviteToSlack');
+const getFileRouter = require('./routes/getFile');
+const removeFileRouter = require('./routes/removeFile');
+const getPermissionsRouter = require('./routes/getPermissions');
+const addToolRouter = require('./routes/addTool');
 
 
 
 
-var app = express();
+const app = express();
 
 const PUBLIC_URL = process.env.PUBLIC_URL || 'http://localhost:3001'
 
@@ -74,6 +75,7 @@ app.use('/inviteToSlack', inviteToSlackRouter);
 app.use('/getFile', getFileRouter);
 app.use('/removeFile', removeFileRouter);
 app.use('/getPermissions', getPermissionsRouter);
+app.use('/addTool', addToolRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
