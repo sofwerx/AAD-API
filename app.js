@@ -22,6 +22,7 @@ const getFileRouter = require('./routes/getFile');
 const removeFileRouter = require('./routes/removeFile');
 const getPermissionsRouter = require('./routes/getPermissions');
 const addToolRouter = require('./routes/addTool');
+const updateUsernameRouter = require('./routes/updateUsername');
 
 
 
@@ -59,23 +60,24 @@ app.use(function (req, res, next) {
   }
 })
 
-app.use('/', indexRouter);
-app.use('/signup', signupRouter);
-app.use('/login', loginRouter);
-app.use('/getAllUsers', getAllUsersRouter);
-app.use('/getUserInfo', getUserInfoRouter);
-app.use('/getAllTools', getAllToolsRouter);
-app.use('/getAllReviews', getAllReviewsRouter);
-app.use('/getAllPublicReviews', getAllPublicReviewsRouter);
-app.use('/postReview', postReviewRouter);
-app.use('/editSaveToggle', editSaveToggleRouter);
-app.use('/updateReview', updateReviewRouter);
-app.use('/deleteReview', deleteReviewRouter);
-app.use('/inviteToSlack', inviteToSlackRouter);
-app.use('/getFile', getFileRouter);
-app.use('/removeFile', removeFileRouter);
-app.use('/getPermissions', getPermissionsRouter);
-app.use('/addTool', addToolRouter);
+app.use('/', indexRouter)
+app.use('/signup', signupRouter)
+app.use('/login', loginRouter)
+app.use('/getAllUsers', getAllUsersRouter)
+app.use('/getUserInfo', getUserInfoRouter)
+app.use('/getAllTools', getAllToolsRouter)
+app.use('/getAllReviews', getAllReviewsRouter)
+app.use('/getAllPublicReviews', getAllPublicReviewsRouter)
+app.use('/postReview', postReviewRouter)
+app.use('/editSaveToggle', editSaveToggleRouter)
+app.use('/updateReview', updateReviewRouter)
+app.use('/deleteReview', deleteReviewRouter)
+app.use('/inviteToSlack', inviteToSlackRouter)
+app.use('/getFile', getFileRouter)
+app.use('/removeFile', removeFileRouter)
+app.use('/getPermissions', getPermissionsRouter)
+app.use('/addTool', addToolRouter)
+app.use('/updateUsername', updateUsernameRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
