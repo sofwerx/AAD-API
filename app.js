@@ -23,6 +23,8 @@ const removeFileRouter = require('./routes/removeFile');
 const getPermissionsRouter = require('./routes/getPermissions');
 const addToolRouter = require('./routes/addTool');
 const updateUsernameRouter = require('./routes/updateUsername');
+const validateCurrentPasswordInputRouter = require('./routes/validateCurrentPasswordInput');
+const validateNewPasswordInputRouter = require('./routes/validateNewPasswordInput');
 
 
 
@@ -78,6 +80,8 @@ app.use('/removeFile', removeFileRouter)
 app.use('/getPermissions', getPermissionsRouter)
 app.use('/addTool', addToolRouter)
 app.use('/updateUsername', updateUsernameRouter)
+app.use('/validateCurrentPasswordInput', validateCurrentPasswordInputRouter)
+app.use('/validateNewPasswordInput', validateNewPasswordInputRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
