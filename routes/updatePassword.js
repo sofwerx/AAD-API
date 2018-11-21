@@ -4,7 +4,6 @@ const knex = require('../knex')
 const bcrypt = require('bcrypt')
 
 const verifyOldPassword = (req, res, next) => {
-    console.log('HERE IS THE REQ.BODY', req.body)
     knex('users')
       .where('username', req.body.username)
       .select('hashed_password', 'id')
@@ -28,7 +27,6 @@ const updatePassword = (req, res, next) => {
   .where("username", req.body.username)
   .update({ hashed_password: hashedPass })
   .then(result => {
-    console.log('HERE IS THE RESULT FROM UPDATE PASSWORD', result)
     res.json(result)
   })
   .catch(() => {
