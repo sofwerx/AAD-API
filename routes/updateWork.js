@@ -2,12 +2,12 @@ const express = require('express')
 const router = express.Router()
 const knex = require('../knex')
 
-const updateUsername = (req, res, next) => {
+const updateWork = (req, res, next) => {
   knex('users')
   .where("id", req.body.user_id)
-  .update({ username: req.body.newUsername })
+  .update({ jobTitle: req.body.jobTitle, company: req.body.company })
   .then(result => res.json(result))
   .catch(() => res.status(500))
 }
-router.patch('/',  updateUsername)
+router.patch('/',  updateWork)
 module.exports = router
