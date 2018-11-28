@@ -3,6 +3,7 @@ exports.up = (knex, Promise) => {
       // TABLE COLUMN DEFINITIONS HERE
       table.increments().primary()      
       table.string('tool_name').nullable()
+      table.integer('review_id').nullable()
       table.string('answer_1').nullable()
       table.string('answer_2').nullable() 
       table.string('answer_3').nullable() 
