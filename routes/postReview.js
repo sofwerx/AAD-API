@@ -11,6 +11,20 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage})
 
+const saveAnswers = (req, res, next) => {
+    let answerObect = {}
+    for (let key in req.body) {
+        if (key.substring(0,6) === 'answer') {
+            answerObect[key] = req.body[key]
+        }
+    }
+    answerObect['tool_name'] = req.body.toolName
+    knex('answers')
+    .insert(answerObect)
+    .then(() => next())
+    .catch(err => err)
+}
+
 
 
 const postReview = (req, res, next) => { 
@@ -74,5 +88,5 @@ const postReview = (req, res, next) => {
   }
 
 
-  router.post('/',  upload.single('uploadedFile'), postReview)
+  router.post('/',  upload.single('uploadedFile'), saveAnswers, postReview)
   module.exports = router
