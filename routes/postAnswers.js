@@ -14,11 +14,8 @@ const getAnswers = (req, res, next) => {
 }
 
 const postAnswers = (req, res, next) => {
-    if(reviewIDs.includes(req.body.review_id)){
-        knex('answers')
-        .where('review_id', req.body.review_id)
-        .update(req.body).then(r => res.json(r)).catch(err => err)
-    } else {
+
+    if(!reviewIDs.includes(req.body.review_id)){
         knex('answers')
         .insert(req.body)
         .then(r => res.json(r))
