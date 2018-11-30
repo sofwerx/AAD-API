@@ -10,9 +10,6 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({storage})
-
-
-
 const postReview = (req, res, next) => { 
     const username = req.body.username
     if(req.file){

@@ -27,6 +27,8 @@ const validateNewPasswordInputRouter = require('./routes/validateNewPasswordInpu
 const updatePasswordRouter = require('./routes/updatePassword');
 const updateFullNameRouter = require('./routes/updateFullName');
 const updateWorkRouter = require('./routes/updateWork');
+const getAnswersRouter = require('./routes/getAnswers');
+const postAnswersRouter = require('./routes/postAnswers');
 
 
 
@@ -86,6 +88,8 @@ app.use('/validateNewPasswordInput', validateNewPasswordInputRouter)
 app.use('/updatePassword', updatePasswordRouter)
 app.use('/updateFullName', updateFullNameRouter)
 app.use('/updateWork', updateWorkRouter)
+app.use('/getAnswers', getAnswersRouter)
+app.use('/postAnswers', postAnswersRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
