@@ -6,7 +6,7 @@ const knex = require('../knex')
 const getUserInfo = (req, res, next) => {
     return knex('users')
       .where('username', req.params.username)
-      .select(['username', 'email', 'firstName', 'lastName', 'jobTitle', 'company', 'role'])
+      .select(['id', 'username', 'email', 'firstName', 'lastName', 'jobTitle', 'company', 'role'])
       .then((result) => {
         res.json(result)
       })
