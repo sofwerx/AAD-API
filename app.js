@@ -22,7 +22,6 @@ const getFileRouter = require('./routes/getFile');
 const removeFileRouter = require('./routes/removeFile');
 const getPermissionsRouter = require('./routes/getPermissions');
 const addToolRouter = require('./routes/addTool');
-const updateUsernameRouter = require('./routes/updateUsername');
 const validateCurrentPasswordInputRouter = require('./routes/validateCurrentPasswordInput');
 const validateNewPasswordInputRouter = require('./routes/validateNewPasswordInput');
 const updatePasswordRouter = require('./routes/updatePassword');
@@ -82,7 +81,6 @@ app.use('/getFile', getFileRouter)
 app.use('/removeFile', removeFileRouter)
 app.use('/getPermissions', getPermissionsRouter)
 app.use('/addTool', addToolRouter)
-app.use('/updateUsername', updateUsernameRouter)
 app.use('/validateCurrentPasswordInput', validateCurrentPasswordInputRouter)
 app.use('/validateNewPasswordInput', validateNewPasswordInputRouter)
 app.use('/updatePassword', updatePasswordRouter)
