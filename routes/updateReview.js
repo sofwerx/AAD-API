@@ -12,6 +12,23 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage})
 
+
+const updateAnswer = (req, res, next) => {
+    const updateObject = {}
+    for (let key in req.body) {
+          if(key.substring(0, 6) === "answer"){
+              updateObject[key] = req.body[key]
+          }
+    }
+    updateObject["tool_name"] = req.body.toolName
+    updateObject["review_id"] = req.body.reviewId
+
+    knex('answers')
+    .where('review_id', req.body.reviewId)
+    .update(updateObject).then(r => next()).catch(err => err)
+}
+
+
 const updateReview = (req, res, next) => { 
 
     if(req.file){
@@ -64,5 +81,5 @@ const updateReview = (req, res, next) => {
   
 
 
-router.patch('/', upload.single('uploadedFile'), updateReview)
+router.patch('/', upload.single('uploadedFile'), updateAnswer, updateReview)
 module.exports = router
