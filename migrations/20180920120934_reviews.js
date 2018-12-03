@@ -6,7 +6,6 @@ exports.up = (knex, Promise) => {
       table.string('tool_name').nullable()
       table.boolean('editable').nullable()
       table.boolean('sharable').nullable()
-      table.boolean('OFF').nullable()
       table.string('text', 3000).nullable()
       table.string('firstName').nullable() 
       table.string('lastName').nullable() 
