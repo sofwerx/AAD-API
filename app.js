@@ -14,7 +14,6 @@ const getAllToolsRouter = require('./routes/getAllTools');
 const getAllReviewsRouter = require('./routes/getAllReviews');
 const getAllPublicReviewsRouter = require('./routes/getAllPublicReviews');
 const postReviewRouter = require('./routes/postReview');
-const editSaveToggleRouter = require('./routes/editSaveToggle');
 const updateReviewRouter = require('./routes/updateReview');
 const deleteReviewRouter = require('./routes/deleteReview');
 const inviteToSlackRouter = require('./routes/inviteToSlack');
@@ -75,7 +74,6 @@ app.use('/getAllTools', getAllToolsRouter)
 app.use('/getAllReviews', getAllReviewsRouter)
 app.use('/getAllPublicReviews', getAllPublicReviewsRouter)
 app.use('/postReview', postReviewRouter)
-app.use('/editSaveToggle', editSaveToggleRouter)
 app.use('/updateReview', updateReviewRouter)
 app.use('/deleteReview', deleteReviewRouter)
 app.use('/inviteToSlack', inviteToSlackRouter)
