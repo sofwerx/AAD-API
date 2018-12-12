@@ -22,6 +22,7 @@ const updateAnswer = (req, res, next) => {
     }
     updateObject["tool_name"] = req.body.toolName
     updateObject["review_id"] = req.body.reviewId
+    updateObject["int_type"] = req.body.int_type
 
     knex('answers')
     .where('review_id', req.body.reviewId)
