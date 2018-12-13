@@ -13,13 +13,11 @@ const upload = multer({storage})
 const postReview = (req, res, next) => { 
     const username = req.body.username
     if(req.file){
-        
         knex('reviews')
         .insert({
             tool_name: req.body.toolName,
             username,
             text: req.body.text,
-            editable: false,
             path: req.file.path,
             sharable: req.body.sharable,
             firstName: req.body.firstName,
@@ -31,42 +29,42 @@ const postReview = (req, res, next) => {
             answer_2: req.body.answer_2,
             answer_3: req.body.answer_3,
             answer_4: req.body.answer_4,
-            answer_5: req.body.answer_5
-            })
-            .returning('id')
-            .then((result) => {
-                res.json(result)
-            })
-            .catch(() => {
-                res.status(500)
-            })
-
+            answer_5: req.body.answer_5,
+            int_type: req.body.int_type
+        })
+        .returning('id')
+        .then((result) => {
+            res.json(result)
+        })
+        .catch((err) => {
+            res.status(500).json(err)
+        })
     } else {
         knex('reviews')
-            .insert({
-                tool_name: req.body.toolName,
-                username,
-                text: req.body.text,
-                editable: false,
-                sharable: req.body.sharable,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                jobTitle: req.body.jobTitle,
-                company: req.body.company,
-                rating: req.body.rating,
-                answer_1: req.body.answer_1,
-                answer_2: req.body.answer_2,
-                answer_3: req.body.answer_3,
-                answer_4: req.body.answer_4,
-                answer_5: req.body.answer_5
-              })
-              .returning('id')
-              .then((result) => {
-                  res.json(result)
-              })
-              .catch(() => {
-                  res.status(500)
-              })
+        .insert({
+            tool_name: req.body.toolName,
+            username,
+            text: req.body.text,
+            sharable: req.body.sharable,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            jobTitle: req.body.jobTitle,
+            company: req.body.company,
+            rating: req.body.rating,
+            answer_1: req.body.answer_1,
+            answer_2: req.body.answer_2,
+            answer_3: req.body.answer_3,
+            answer_4: req.body.answer_4,
+            answer_5: req.body.answer_5,
+            int_type: req.body.int_type
+        })
+        .returning('id')
+        .then((result) => {
+            res.json(result)
+        })
+        .catch((err) => {
+            res.status(500).json(err)
+        })
     }
   }
 

@@ -4,6 +4,7 @@ exports.up = (knex, Promise) => {
       table.increments().primary()      
       table.string('tool_name').nullable()
       table.integer('review_id').nullable()
+      table.string('int_type').nullable()
       table.string('answer_1').nullable()
       table.string('answer_2').nullable() 
       table.string('answer_3').nullable() 

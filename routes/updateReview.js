@@ -22,6 +22,7 @@ const updateAnswer = (req, res, next) => {
     }
     updateObject["tool_name"] = req.body.toolName
     updateObject["review_id"] = req.body.reviewId
+    updateObject["int_type"] = req.body.int_type
 
     knex('answers')
     .where('review_id', req.body.reviewId)
@@ -44,7 +45,8 @@ const updateReview = (req, res, next) => {
             answer_2: req.body.answer_2,
             answer_3: req.body.answer_3,
             answer_4: req.body.answer_4,
-            answer_5: req.body.answer_5
+            answer_5: req.body.answer_5,
+            int_type: req.body.int_type
             })
         .returning('id')
         .then((result) => {
@@ -65,7 +67,8 @@ const updateReview = (req, res, next) => {
           answer_2: req.body.answer_2,
           answer_3: req.body.answer_3,
           answer_4: req.body.answer_4,
-          answer_5: req.body.answer_5
+          answer_5: req.body.answer_5,
+          int_type: req.body.int_type
       })
       .returning('*')
       .then((result) => {
