@@ -4,6 +4,8 @@ exports.up = (knex, Promise) => {
       table.increments().primary()
       table.string('name', 255).notNull().unique()
       table.string('url', 255).notNull()  
+      table.string('username', 255).notNull()  
+      table.string('password', 255).notNull()  
       table.string('description', 5000).notNull()
       table.timestamps(true, true)
     })
