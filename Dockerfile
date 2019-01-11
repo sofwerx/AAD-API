@@ -102,4 +102,5 @@ ENV PATH=${PATH}:/app/node_modules/.bin/
 
 VOLUME /app/public/uploads
 
-CMD sh -c 'knex migrate:rollback ; knex migrate:latest ; knex seed:run; exec npm start'
+#CMD sh -c 'knex migrate:rollback ; knex migrate:latest ; knex seed:run; exec npm start'
+CMD sh -c 'knex migrate:latest ; exec npm start'
