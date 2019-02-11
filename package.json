@@ -3,28 +3,80 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www --exec 'npm run lint && node'",
+    "dev:nolint": "nodemon ./bin/www",
+    "db:load": "knex seed:run",
+    "db:migrate": "knex migrate:latest",
+    "db:rollback": "knex migrate:rollback",
+    "db:currentVersion": "knex migrate:currentVersion",
+    "lint": "eslint --quiet .",
+    "apidoc": "apidoc -i 'server/docs/' -o public/apidoc/"
   },
   "dependencies": {
-    "bcrpyt": "^2.0.0",
-    "bcrypt": "^3.0.2",
-    "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "dotenv": "^6.0.0",
-    "ejs": "~2.5.7",
-    "event-stream": "^3.3.4",
+    "debug": "^2.6.9",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "joi": "^13.6.0",
-    "jsonwebtoken": "^8.3.0",
-    "knex": "^0.15.2",
+    "knex": "^0.16.3",
     "morgan": "~1.9.0",
-    "multer": "^1.4.0",
-    "node-fetch": "^2.2.0",
-    "nodemon": "^1.18.4",
-    "pg": "^7.4.3",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "pg": "^7.8.0"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.7",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "nodemon": "^1.18.9"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "es6": true,
+      "browser": true
+    },
+    "rules": {
+      "brace-style": [
+        "error",
+        "stroustrup"
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-unused-vars": [
+        "warn"
+      ],
+      "no-var": [
+        "off"
+      ],
+      "one-var": [
+        "off"
+      ],
+      "no-use-before-define": [
+        "error",
+        {
+          "variables": false
+        }
+      ],
+      "arrow-body-style": [
+        0
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "bin/*",
+    "public/apidoc/*"
+  ],
+  "apidoc": {
+    "name": "AAD-API",
+    "version": "1.0.0",
+    "description": "API created to service AAD Survey Initiative",
+    "apidoc": {
+      "title": "AAD-API Documentation",
+      "url": "https://github.com/sofwerx/AAD-API"
+    },
+    "template": {
+      "forceLanguage": "en"
+    }
   }
 }

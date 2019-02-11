@@ -1,18 +1,52 @@
-const DATABASE_CLIENT = process.env.DATABASE_CLIENT || 'pg'
-const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost/aad'
-
-// Define DB connections for different environments
 module.exports = {
-    development: {
-      client: DATABASE_CLIENT,
-      connection: DATABASE_URL
+
+  development: {
+    client: 'postgresql',
+    connection: {
+      database: 'postgres',
+      user: 'postgres',
+      password: 'postgres',
+      port: 32769
     },
-    test: {
-      client: DATABASE_CLIENT,
-      connection: DATABASE_URL
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: `${__dirname}/db/migrations`
     },
-    production: {
-      client: DATABASE_CLIENT,
-      connection: DATABASE_URL
+    seeds: {
+      directory: `${__dirname}/db/seeds`
+    }
+  },
+
+  staging: {
+    client: 'postgresql',
+    connection: {
+      database: 'postgres',
+      user: 'postgres',
+      password: 'postgres'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  },
+
+  production: {
+    client: 'postgresql',
+    connection: {
+      database: 'my_db',
+      user: 'username',
+      password: 'password'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
     }
   }
+
+};
