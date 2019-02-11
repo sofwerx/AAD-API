@@ -7,8 +7,7 @@ const {
   createUser,
   updateUser,
   getUser,
-  getUserPermissions,
-  inviteToSlack
+  getUserPermissions
 } = require('../controllers/user_controller');
 
 const {
@@ -28,9 +27,5 @@ router.route('/users/:id/permissions')
 
 router.route('/users/:id/survey_responses')
   .get(getSurveyResponsesByUserId);
-
-router.route('/users/:id/inviteToSlack')
-  .post(inviteToSlack);
-
 
 module.exports = router;

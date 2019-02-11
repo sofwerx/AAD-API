@@ -40,28 +40,11 @@ const getUser = (req, res, next) => {
 // TODO Unimplemented
 const getUserPermissions = (req, res, next) => {
 };
-const inviteToSlack = (req, res, next) => {
-  const slackGroup = process.env.SLACK_GROUP;
-  const slackTeam = process.env.SLACK_TEAM;
-  const token = process.env.SLACK_TOKEN;
-
-
-  const url = `https://${slackTeam}.slack.com/api/users.admin.invite`;
-  fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `token=${token}&email=${req.body.email}&channels=${slackGroup}`
-  })
-    .then(slackResult => slackResult.json())
-    .then(json => res.json(json))
-    .catch(err => res.status(500).json(JSON.stringify(err)));
-};
 
 module.exports = {
   usersIndex,
   createUser,
   updateUser,
   getUser,
-  getUserPermissions,
-  inviteToSlack
+  getUserPermissions
 };
