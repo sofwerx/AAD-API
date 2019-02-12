@@ -8,5 +8,7 @@ exports.seed = (knex, Promise) => {
     .then(delSurvey => knex('ToolDetail').del())
     .then(delToolDetail => knex('Tool').del())
     .then(delTool => knex('User').del())
-    .then(delUser => knex('UserRole').del());
+    .then(delUser => knex('GlobalPermission').del())
+    .then(delGlobalPermission => knex('UserToolPermissions').del())
+    .then(delUserToolPermissions => knex('ToolPermission').del());
 };

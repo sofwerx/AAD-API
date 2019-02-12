@@ -5,8 +5,7 @@ module.exports = [
     first_name: 'John',
     last_name: 'Doe',
     job_title: 'Employee',
-    company: 'SofWerx',
-    rolename: 'default'
+    company: 'SofWerx'
   },
   {
     username: 'admin',
@@ -14,7 +13,6 @@ module.exports = [
     first_name: 'admin',
     last_name: 'admin',
     job_title: 'SysAdmin',
-    company: 'SofWerx',
-    rolename: 'admin'
+    company: 'SofWerx'
   }
 ];
