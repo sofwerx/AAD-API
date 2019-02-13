@@ -1,4 +1,4 @@
-const { Survey } = require('../models');
+const { Survey, Question, AnswerOption } = require('../models');
 
 const surveyIndex = (req, res, next) => {
   let where = {};
@@ -15,19 +15,35 @@ const surveyIndex = (req, res, next) => {
 
 const getSurvey = (req, res, next) => {
   const surveyId = req.params.id;
+  let survey;
+  let questions;
 
   Survey.findById(surveyId)
-    .then((survey) => {
-      // survey[0].survey_name = {asd: "asd"};
-      console.log(survey);
-      res.json({
-        survey
-      });
+    .then((surveyResponse) => {
+      survey = surveyResponse;
+      return Question.findQuestionsBySurveyId(surveyId);
+    })
+    .then((questionResponse) => {
+      questions = questionResponse;
+
+      Promise.all(questions.map(populateQuestionAnswerOptions))
+        .then(() => {
+          survey.questions = questions;
+          res.json({
+            survey
+          });
+        });
     })
     .catch(next);
 };
 
-// TODO Revisit after error handling implemented
+const populateQuestionAnswerOptions = (question) => {
+  return AnswerOption.findAnswerOptions(question.question_type_id, question.id)
+    .then((answerOptions) => {
+      question.answerOptions = answerOptions;
+    });
+};
+
 const deleteSurvey = (req, res, next) => {
   const surveyId = req.params.id;
 
@@ -47,6 +63,7 @@ const getSurveysByToolId = (req, res, next) => {
     }))
     .catch(next);
 };
+
 
 module.exports = {
   surveyIndex,
