@@ -39,7 +39,6 @@ module.exports = ({
     // not allowed to set `id`
     delete props.id;//eslint-disable-line
 
-
     return knex.insert(props)
       .returning(selectableProps)
       .into(tableName)
@@ -66,7 +65,8 @@ module.exports = ({
   const findById = id => knex.select(selectableProps)
     .from(tableName)
     .where({ id })
-    .timeout(timeout);
+    .timeout(timeout)
+    .first();
 
   const update = (id, props) => {
     // not allowed to set `id` in DB
