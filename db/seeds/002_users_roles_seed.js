@@ -49,7 +49,6 @@ const createGlobalPermission = ((knex, globalPermission) => {
 
 const createUserToolPermissions = (knex, userToolPermissions) => {
   let userId;
-  let toolPermissionId;
   return knex('User').where('username', userToolPermissions.username).first()
     .then((user) => {
       userId = user.id;
