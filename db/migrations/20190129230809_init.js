@@ -139,6 +139,8 @@ exports.up = (knex, Promise) => knex.schema
       .references('Question.id')
       .onDelete('RESTRICT');
     table.text('answer_text');
+    table.integer('answer_numeric');
+    table.boolean('answer_bool');
   });
 
 exports.down = (knex, Promise) => knex.schema
