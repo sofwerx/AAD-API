@@ -48,21 +48,10 @@ const deleteSurveyResponse = (req, res, next) => {
     .catch(next);
 };
 
-const getSurveyResponsesByUserId = (req, res, next) => {
-  const userId = req.params.id;
-
-  SurveyResponse.find({ user_id: userId })
-    .then(surveyResponse => res.json({
-      surveyResponse
-    }))
-    .catch(next);
-};
-
 module.exports = {
   surveyResponseIndex,
   getSurveyResponse,
   createSurveyResponse,
   updateSurveyResponse,
-  deleteSurveyResponse,
-  getSurveyResponsesByUserId
+  deleteSurveyResponse
 };

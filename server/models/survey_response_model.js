@@ -19,7 +19,12 @@ module.exports = (knex) => {
     selectableProps
   });
 
+  const findAllByUserId = (userId) => {
+    return knexHelper.find({ user_id: userId });
+  };
+
   return {
-    ...knexHelper
+    ...knexHelper,
+    findAllByUserId
   };
 };

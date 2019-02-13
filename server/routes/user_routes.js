@@ -7,12 +7,9 @@ const {
   createUser,
   updateUser,
   getUser,
-  getUserPermissions
-} = require('../controllers/user_controller');
-
-const {
+  getUserPermissions,
   getSurveyResponsesByUserId
-} = require('../controllers/survey_response_controller');
+} = require('../controllers/user_controller');
 
 router.route('/users')
   .get(usersIndex)

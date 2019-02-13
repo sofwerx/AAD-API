@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { SurveyResponse, User } = require('../models');
 
 const usersIndex = (req, res, next) => {
   User.findAll()
@@ -41,10 +41,20 @@ const getUser = (req, res, next) => {
 const getUserPermissions = (req, res, next) => {
 };
 
+const getSurveyResponsesByUserId = (req, res, next) => {
+  const userId = req.params.id;
+  SurveyResponse.findAllByUserId(userId)
+    .then(surveyResponses => res.json({
+      surveyResponses
+    }))
+    .catch(next);
+};
+
 module.exports = {
   usersIndex,
   createUser,
   updateUser,
   getUser,
-  getUserPermissions
+  getUserPermissions,
+  getSurveyResponsesByUserId
 };
