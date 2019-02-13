@@ -14,7 +14,7 @@ const surveyIndex = (req, res, next) => {
 };
 
 const getSurvey = (req, res, next) => {
-  const surveyId = req.params.id;
+  const surveyId = req.params.survey_id;
   let survey;
   let questions;
 
@@ -45,7 +45,7 @@ const populateQuestionAnswerOptions = (question) => {
 };
 
 const deleteSurvey = (req, res, next) => {
-  const surveyId = req.params.id;
+  const surveyId = req.params.survey_id;
 
   Survey.destroy(surveyId)
     .then((recordsDeleted) => {
@@ -55,7 +55,7 @@ const deleteSurvey = (req, res, next) => {
 };
 
 const getSurveysByToolId = (req, res, next) => {
-  const toolId = req.params.id;
+  const toolId = req.params.tool_id;
 
   Survey.find({ tool_id: toolId })
     .then(surveys => res.json({

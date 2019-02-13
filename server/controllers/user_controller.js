@@ -19,7 +19,7 @@ const createUser = (req, res, next) => {
 };
 
 const updateUser = (req, res, next) => {
-  const userId = req.params.id;
+  const userId = req.params.user_id;
   const props = req.body.user;
 
   User.update(userId, props)
@@ -29,7 +29,7 @@ const updateUser = (req, res, next) => {
     .catch(next);
 };
 const getUser = (req, res, next) => {
-  const userId = req.params.id;
+  const userId = req.params.user_id;
 
   User.findById(userId)
     .then(user => res.json({
@@ -42,7 +42,7 @@ const getUserPermissions = (req, res, next) => {
 };
 
 const getSurveyResponsesByUserId = (req, res, next) => {
-  const userId = req.params.id;
+  const userId = req.params.user_id;
   SurveyResponse.findAllByUserId(userId)
     .then(surveyResponses => res.json({
       surveyResponses

@@ -14,7 +14,7 @@ router.route('/survey_responses')
   .get(surveyResponseIndex)
   .post(createSurveyResponse);
 
-router.route('/survey_responses/:id')
+router.route('/survey_responses/:survey_response_id')
   .get(getSurveyResponse)
   .put(updateSurveyResponse)
   .delete(deleteSurveyResponse);

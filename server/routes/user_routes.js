@@ -15,14 +15,17 @@ router.route('/users')
   .get(usersIndex)
   .post(createUser);
 
-router.route('/users/:id')
+router.route('/users/:user_id')
   .get(getUser)
   .put(updateUser);
 
-router.route('/users/:id/permissions')
+router.route('/users/:user_id/permissions')
   .get(getUserPermissions);
 
-router.route('/users/:id/survey_responses')
+router.route('/users/:user_id/survey_responses')
+  .get(getSurveyResponsesByUserId);
+
+router.route('/users/:user_id/survey_responses')
   .get(getSurveyResponsesByUserId);
 
 module.exports = router;

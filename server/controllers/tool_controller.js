@@ -19,7 +19,7 @@ const createTool = (req, res, next) => {
 };
 
 const getTool = (req, res, next) => {
-  const toolId = req.params.id;
+  const toolId = req.params.tool_id;
   Tool.findById(toolId)
     .then(tool => res.json({
       tool
@@ -28,7 +28,7 @@ const getTool = (req, res, next) => {
 };
 
 const getToolSurveys = (req, res, next) => {
-  const toolId = req.params.id;
+  const toolId = req.params.tool_id;
   Survey.find({ tool_id: toolId })
     .then((surveys) => {
       res.json({

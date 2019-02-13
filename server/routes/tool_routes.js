@@ -17,13 +17,13 @@ router.route('/tools')
   .get(toolsIndex)
   .post(createTool);
 
-router.route('/tools/:id/surveys')
+router.route('/tools/:tool_id/surveys')
   .get(getToolSurveys);
 
-router.route('/tools/:id/surveys/:survey_id')
+router.route('/tools/:tool_id/surveys/:survey_id')
   .get(getSurveysByToolId);
 
-router.route('/tools/:id')
+router.route('/tools/:tool_id')
   .get(getTool);
 
 module.exports = router;

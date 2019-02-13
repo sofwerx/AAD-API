@@ -11,10 +11,10 @@ const {
 router.route('/surveys')
   .get(surveyIndex);
 
-router.route('/surveys/:id')
+router.route('/surveys/:survey_id')
   .get(getSurvey);
 
-router.route('/surveys/:id')
+router.route('/surveys/:survey_id')
   .delete(deleteSurvey);
 
 module.exports = router;
