@@ -134,10 +134,12 @@ exports.up = (knex, Promise) => knex.schema
     table.increments('id');
     table.integer('survey_response_id')
       .references('SurveyResponse.id')
-      .onDelete('CASCADE');
+      .onDelete('CASCADE')
+      .notNullable();
     table.integer('question_id')
       .references('Question.id')
-      .onDelete('RESTRICT');
+      .onDelete('RESTRICT')
+      .notNullable();
     table.text('answer_text');
     table.integer('answer_numeric');
     table.boolean('answer_bool');

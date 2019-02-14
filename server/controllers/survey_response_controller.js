@@ -1,4 +1,5 @@
 const { SurveyResponse, Answer } = require('../models');
+const { createError, BAD_REQUEST } = require('../helpers/error_helper');
 
 const surveyResponseIndex = (req, res, next) => {
   let where = {};
@@ -32,18 +33,25 @@ const getSurveyResponse = (req, res, next) => {
 };
 
 const createSurveyResponse = (req, res, next) => {
+  let createdSurveyResponse;
+  // survey_id, user_id, is_public
   const props = req.body.surveyResponse;
-
-  SurveyResponse.create({ ...props })
-    .then(surveyResponse => res.json({
-      surveyResponse
-    }))
-    .catch(next);
-};
-
-// TODO Unimplemeneted
-const updateSurveyResponse = (req, res, next) => {
-  const surveyResponseId = req.params.id;
+  SurveyResponse.create({
+    user_id: props.user_id,
+    survey_id: props.survey_id,
+    is_public: props.is_public
+  })
+    .then((newSurveyResponseRecord) => {
+      // Iterate Answers and Add Each
+      createdSurveyResponse = newSurveyResponseRecord;
+      props.answers.forEach((answer) => {
+        answer.survey_response_id = newSurveyResponseRecord[0].id;
+      });
+      return Answer.create(props.answers);
+    })
+    .then(() => res.json({
+      surveyResponse: createdSurveyResponse
+    })).catch(next);
 };
 
 const deleteSurveyResponse = (req, res, next) => {
@@ -60,6 +68,5 @@ module.exports = {
   surveyResponseIndex,
   getSurveyResponse,
   createSurveyResponse,
-  updateSurveyResponse,
   deleteSurveyResponse
 };
