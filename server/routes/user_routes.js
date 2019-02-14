@@ -25,7 +25,4 @@ router.route('/users/:user_id/permissions')
 router.route('/users/:user_id/survey_responses')
   .get(getSurveyResponsesByUserId);
 
-router.route('/users/:user_id/survey_responses')
-  .get(getSurveyResponsesByUserId);
-
 module.exports = router;
