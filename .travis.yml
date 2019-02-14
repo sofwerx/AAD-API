@@ -11,7 +11,7 @@ before_script:
 - eval $(dmport --import "$(cat .dmport)")
 - rm -f .dmport
 script:
-- curl -o docker-compose.yml https://raw.githubusercontent.com/sofwerx/swx-devops/master/local/ibm-minsky/aad-api.yml
+- curl -o docker-compose.yml https://raw.githubusercontent.com/sofwerx/swx-devops/master/local/swx-vmhost/aad-api.yml
 - ln -s . AAD-API
 - docker-compose build aad-api
 - docker-compose up -d --force-recreate aad-api
