@@ -1,4 +1,4 @@
-const { SurveyResponse } = require('../models');
+const { SurveyResponse, Answer } = require('../models');
 
 const surveyResponseIndex = (req, res, next) => {
   let where = {};
@@ -15,11 +15,19 @@ const surveyResponseIndex = (req, res, next) => {
 
 const getSurveyResponse = (req, res, next) => {
   const surveyResponseId = req.params.survey_response_id;
+  let surveyResponse;
 
   SurveyResponse.findById(surveyResponseId)
-    .then(surveyResponseRecord => res.json({
-      surveyResponse: surveyResponseRecord
-    }))
+    .then((surveyResponseRecord) => {
+      surveyResponse = surveyResponseRecord;
+      return Answer.findAllBySurveyResponseId(surveyResponseId);
+    })
+    .then((answerRecords) => {
+      surveyResponse.answers = answerRecords;
+      return res.json({
+        surveyResponse
+      });
+    })
     .catch(next);
 };
 
