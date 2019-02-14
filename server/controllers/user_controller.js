@@ -37,6 +37,18 @@ const getUser = (req, res, next) => {
     }))
     .catch(next);
 };
+
+const deleteUser = (req, res, next) => {
+  const userId = req.params.user_id;
+
+  User.destroy(userId)
+    .then((deleteCount) => {
+      return res.sendStatus(202);
+    })
+    .catch(next);
+};
+
+
 // TODO Unimplemented
 const getUserPermissions = (req, res, next) => {
 };
@@ -55,6 +67,7 @@ module.exports = {
   createUser,
   updateUser,
   getUser,
+  deleteUser,
   getUserPermissions,
   getSurveyResponsesByUserId
 };

@@ -6,6 +6,7 @@ const {
   usersIndex,
   createUser,
   updateUser,
+  deleteUser,
   getUser,
   getUserPermissions,
   getSurveyResponsesByUserId
@@ -17,7 +18,8 @@ router.route('/users')
 
 router.route('/users/:user_id')
   .get(getUser)
-  .put(updateUser);
+  .put(updateUser)
+  .delete(deleteUser);
 
 router.route('/users/:user_id/permissions')
   .get(getUserPermissions);
