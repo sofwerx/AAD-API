@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.disable('x-powered-by');
 
 /* eslint-disable global-require */
 app.use('/',
@@ -21,5 +22,6 @@ app.use('/',
     require('./server/routes/survey_routes')
   ]);
 /* eslint-enable global-require */
+app.use(require('./server/middleware/error_middleware').all);
 
 module.exports = app;
