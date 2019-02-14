@@ -15,22 +15,22 @@ const surveyIndex = (req, res, next) => {
 
 const getSurvey = (req, res, next) => {
   const surveyId = req.params.survey_id;
-  let survey;
+  let constructedSurvey;
   let questions;
 
   Survey.findById(surveyId)
-    .then((surveyResponse) => {
-      survey = surveyResponse;
+    .then((surveyRecord) => {
+      constructedSurvey = surveyRecord;
       return Question.findQuestionsBySurveyId(surveyId);
     })
-    .then((questionResponse) => {
-      questions = questionResponse;
+    .then((questionRecords) => {
+      questions = questionRecords;
 
       Promise.all(questions.map(populateQuestionAnswerOptions))
         .then(() => {
-          survey.questions = questions;
+          constructedSurvey.questions = questions;
           res.json({
-            survey
+            survey: constructedSurvey
           });
         });
     })

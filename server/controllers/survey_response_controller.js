@@ -17,8 +17,8 @@ const getSurveyResponse = (req, res, next) => {
   const surveyResponseId = req.params.survey_response_id;
 
   SurveyResponse.findById(surveyResponseId)
-    .then(surveyResponse => res.json({
-      surveyResponse
+    .then(surveyResponseRecord => res.json({
+      surveyResponse: surveyResponseRecord
     }))
     .catch(next);
 };
