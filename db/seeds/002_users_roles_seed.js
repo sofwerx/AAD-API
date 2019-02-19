@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const sampleUserData = require('../sample_data/users_sample');
 const globalPermissionData = require('../sample_data/global_permission_sample');
 const userToolPermissionsData = require('../sample_data/user_tool_permissions_sample');
@@ -33,7 +34,8 @@ const createUser = (knex, user) => {
     first_name: user.first_name,
     last_name: user.last_name,
     job_title: user.job_title,
-    company: user.company
+    company: user.company,
+    password: bcrypt.hashSync(user.password, 10)
   });
 };
 
