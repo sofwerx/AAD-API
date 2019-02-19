@@ -1,3 +1,4 @@
+const passport = require('passport');
 const { SurveyResponse, User } = require('../models');
 
 const usersIndex = (req, res, next) => {
@@ -62,6 +63,27 @@ const getSurveyResponsesByUserId = (req, res, next) => {
     .catch(next);
 };
 
+const loginUser = (req, res, next) => {
+  if (!req.body.user.email) {
+    return res.status(422).json({ errors: { email: "can't be blank" } });
+  }
+  if (!req.body.user.password) {
+    return res.status(422).json({ errors: { password: "can't be blank" } });
+  }
+  return passport.authenticate('local', { session: false }, (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (user) {
+      const token = User.generateJWT(user.email, user.id);
+      user.password = undefined;
+      return res.json({ user, token });
+    }
+    return res.status(422).json(info);
+  })(req, res, next);
+};
+
 module.exports = {
   usersIndex,
   createUser,
@@ -69,5 +91,6 @@ module.exports = {
   getUser,
   deleteUser,
   getUserPermissions,
-  getSurveyResponsesByUserId
+  getSurveyResponsesByUserId,
+  loginUser
 };
