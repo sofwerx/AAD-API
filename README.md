@@ -18,7 +18,6 @@ node -v
 // To verify npm is installed
 npm -v
 ```
-
 * [[PostgreSQL]](https://www.postgresql.org/download/macosx/) - Requires local DB instance.
 ```
 //Default Connection Information
@@ -28,6 +27,16 @@ password: 'postgres',
 port: 32769
 ```
 
+### Environment Variables
+Create a `.env` file at directory root to override defaults.
+````
+NODE_ENV:           [development]
+PUBLIC_URL:         [http://localhost:3001]
+SECRET:             [secret]
+PORT:               [3000]
+DATABASE_CLIENT:    [pg]
+DATABASE_URL:       [postgres://localhost/aad]
+````
 
 ### Installing
 1. Clone this repo.  [[AAD-API GITHUB]](https://github.com/sofwerx/AAD-API).
@@ -75,11 +84,16 @@ to provide ongoing analysis.
 * [Express](https://expressjs.com/) - Web framework for Node.js
 * [Knex](https://knexjs.org/) -  SQL query builder for Postgres
 
-## Dependencies
+## Dev Dependency Packages
 
 * [ESLint](https://www.npmjs.com/package/eslint) - Code Quality Tool
 * [apiDoc](https://www.npmjs.com/package/apidoc) - RESTful API Documentation
 * [Morgan](https://www.npmjs.com/package/morgan) - HTTP request logger
 
+## Authorization/Authentication Packages
 
-
+* [bcryptjs](https://www.npmjs.com/package/bcryptjs) - Used for Password Encryption
+* [express-jwt](https://www.npmjs.com/package/express-jwt) - Express JWT Solution
+* [express-session](https://www.npmjs.com/package/express-session) - Express Session Handler
+* [passport](https://www.npmjs.com/package/passport) - JWT Strategy Handler
+* [passport-local](https://www.npmjs.com/package/passport-local) - Passport Strategy to handle authentication
