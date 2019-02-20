@@ -9,7 +9,7 @@ const {
 } = require('../helpers/error_helper');
 
 const developmentStacktrace = (err, req) => {
-  return req.app.get('env') === 'development' ? err.stack : '';
+  return process.env.NODE_ENV === 'development' ? err.stack : '';//
 };
 
 const unauthorized = (err, req, res, next) => {
