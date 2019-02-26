@@ -15,17 +15,17 @@ module.exports = [
     is_global: true
   },
   {
-    tool_name: 'Atn',
+    tool_name: 'Argument Mapper',
     permission_type: 'admin',
     is_global: false
   },
   {
-    tool_name: 'Atn',
+    tool_name: 'Argument Mapper',
     permission_type: 'owner',
     is_global: false
   },
   {
-    tool_name: 'Atn',
+    tool_name: 'Argument Mapper',
     permission_type: 'user',
     is_global: true
   }
