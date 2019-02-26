@@ -8,9 +8,12 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const passport = require('passport');
 const errorHandler = require('errorhandler');
+const cors = require('cors');
 
 const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
+const PUBLIC_URL = process.env.PUBLIC_URL || 'http://localhost:3001';
+
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,6 +23,14 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.disable('x-powered-by');
+
+// CORS Support
+const corsOptions = {
+  origin: PUBLIC_URL,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions));
+
 
 app.use(session({
   secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false
