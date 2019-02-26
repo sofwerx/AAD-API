@@ -21,7 +21,7 @@ const auth = {
     userProperty: 'payload',
     getToken: getTokenFromHeaders,
     credentialsRequired: false
-  })
+  }).unless({ path: ['/users/login', '/users/register'] })
 };
 
 module.exports = auth;

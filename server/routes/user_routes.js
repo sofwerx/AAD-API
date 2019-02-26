@@ -20,7 +20,10 @@ router.route('/users/login')
 
 router.route('/users')
   .all(auth.required)
-  .get(usersIndex)
+  .get(usersIndex);
+
+router.route('/users')
+  .all(auth.optional)
   .post(createUser);
 
 router.route('/users/:user_id')
