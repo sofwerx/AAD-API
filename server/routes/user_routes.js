@@ -9,6 +9,7 @@ const {
   updateUser,
   deleteUser,
   getUser,
+  getCurrentUser,
   loginUser,
   getUserPermissions,
   getSurveyResponsesByUserId
@@ -18,13 +19,17 @@ router.route('/users/login')
   .all(auth.optional)
   .post(loginUser);
 
+router.route('/users/register')
+  .all(auth.optional)
+  .post(createUser);
+
 router.route('/users')
   .all(auth.required)
   .get(usersIndex);
 
-router.route('/users')
-  .all(auth.optional)
-  .post(createUser);
+router.route('/user')
+  .all(auth.required)
+  .get(getCurrentUser);
 
 router.route('/users/:user_id')
   .all(auth.required)

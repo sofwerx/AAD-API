@@ -1,4 +1,5 @@
 const passport = require('passport');
+const jwt = require('express-jwt');
 const { SurveyResponse, User } = require('../models');
 
 const usersIndex = (req, res, next) => {
@@ -13,9 +14,14 @@ const createUser = (req, res, next) => {
   const props = req.body.user;
 
   User.create({ ...props })
-    .then(user => res.json({
-      user
-    }))
+    .then((user) => {
+      console.log(user);
+      const token = User.generateJWT(user[0].email, user[0].id);
+      return res.json({
+        user: user[0],
+        token
+      });
+    })
     .catch(next);
 };
 
@@ -33,6 +39,15 @@ const getUser = (req, res, next) => {
   const userId = req.params.user_id;
 
   User.findById(userId)
+    .then(user => res.json({
+      user
+    }))
+    .catch(next);
+};
+
+const getCurrentUser = (req, res, next) => {
+  console.log(req.payload);
+  return User.findById(req.payload.id)
     .then(user => res.json({
       user
     }))
@@ -89,6 +104,7 @@ module.exports = {
   createUser,
   updateUser,
   getUser,
+  getCurrentUser,
   deleteUser,
   getUserPermissions,
   getSurveyResponsesByUserId,
