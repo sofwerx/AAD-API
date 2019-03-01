@@ -1,10 +1,18 @@
 const { Tool, Survey } = require('../models');
 
 const toolsIndex = (req, res, next) => {
-  Tool.findAll()
-    .then(tools => res.json({
-      tools
-    }))
+  Tool.toolsIndex()
+    .then(
+      (tools) => {
+        tools.map((tool) => {
+          tool.activeSurveys = Number.parseInt(tool.activeSurveys, 10);
+          return tool;
+        });
+        return res.json({
+          tools
+        });
+      }
+    )
     .catch(next);
 };
 

@@ -4,11 +4,11 @@ const name = 'Tool';
 const tableName = 'Tool';
 
 const selectableProps = [
-  'id',
-  'tool_name',
-  'description',
-  'updated_at',
-  'created_at'
+  'Tool.id',
+  'Tool.tool_name',
+  'Tool.description',
+  'Tool.updated_at',
+  'Tool.created_at'
 ];
 
 module.exports = (knex) => {
@@ -19,7 +19,17 @@ module.exports = (knex) => {
     selectableProps
   });
 
+  const toolsIndex = () => {
+    return knex.select(...selectableProps)
+      .from('Tool')
+      .leftJoin('Survey', 'Tool.id', 'Survey.tool_id')
+      .groupBy(['Tool.id'])
+      .count({ activeSurveys: knex.raw('case when ?? then 1 end', ['Survey.is_active']) })
+      .timeout(1000);
+  };
+
   return {
-    ...knexHelper
+    ...knexHelper,
+    toolsIndex
   };
 };
