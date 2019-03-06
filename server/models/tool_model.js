@@ -24,6 +24,7 @@ module.exports = (knex) => {
       .from('Tool')
       .leftJoin('Survey', 'Tool.id', 'Survey.tool_id')
       .groupBy(['Tool.id'])
+      .orderBy('Tool.id')
       .count({ activeSurveys: knex.raw('case when ?? then 1 end', ['Survey.is_active']) })
       .timeout(1000);
   };
