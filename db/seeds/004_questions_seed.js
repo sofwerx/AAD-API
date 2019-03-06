@@ -6,9 +6,12 @@ exports.seed = (knex, Promise) => {
   return knex('QuestionType').insert(sampleQuestionTypeData)
     .then((questionTypeResult) => {
       const AnswerOptionPromises = [];
-      defaultAnswerOptionsData.forEach((answerOption) => {
-        const questionType = answerOption.question_type;
-        AnswerOptionPromises.push(createDefaultAnswerOption(knex, answerOption, questionType));
+      defaultAnswerOptionsData.forEach((answerOptionSet) => {
+        const questionType = answerOptionSet.question_type;
+        answerOptionSet.values.forEach((answerValue, index) => {
+          const answerOption = { answer_option_value: answerValue, option_order: index };
+          AnswerOptionPromises.push(createDefaultAnswerOption(knex, answerOption, questionType));
+        });
       });
       return Promise.all(AnswerOptionPromises);
     })

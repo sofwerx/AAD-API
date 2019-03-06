@@ -7,6 +7,13 @@ module.exports = [
     is_multiple_choice: false
   },
   {
+    short_name: 'int_background_select',
+    long_name: 'Intelligence Background Select',
+    description: 'Question with values populated for intelligence backgrounds.',
+    has_custom_values: false,
+    is_multiple_choice: false
+  },
+  {
     short_name: 'rating_scale',
     long_name: 'Zero to One-Hundred Number Scale',
     description: 'Question with the answer in the form of 0 to 100.',
