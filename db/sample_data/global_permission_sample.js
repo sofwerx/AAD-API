@@ -1,6 +1,6 @@
 module.exports = [
   {
-    username: 'admin',
+    username: 'administrator',
     permission_type: 'admin'
   }
 ];

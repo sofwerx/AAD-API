@@ -4,13 +4,13 @@ const { User } = require('../models');
 
 
 passport.use(new LocalStrategy({
-  usernameField: 'user[email]',
+  usernameField: 'user[username]',
   passwordField: 'user[password]'
 },
-(email, password, done) => {
-  User.findForLogin({ email }).then((user) => {
+(username, password, done) => {
+  User.findForLogin({ username }).then((user) => {
     if (!user || !User.validatePassword(user, password)) {
-      return done(null, false, { errors: { 'Email or Password': 'is Invalid' } });
+      return done(null, false, { errors: { 'Username or Password': 'is Invalid' } });
     }
     return done(null, user);
   }).catch(done);

@@ -79,11 +79,11 @@ const getSurveyResponsesByUserId = (req, res, next) => {
 };
 
 const loginUser = (req, res, next) => {
-  if (!req.body.user.email) {
-    return res.status(422).json({ errors: { email: "can't be blank" } });
+  if (!req.body.user.username) {
+    return res.status(422).json({ errors: { Username: "can't be blank" } });
   }
   if (!req.body.user.password) {
-    return res.status(422).json({ errors: { password: "can't be blank" } });
+    return res.status(422).json({ errors: { Password: "can't be blank" } });
   }
   return passport.authenticate('local', { session: false }, (err, user, info) => {
     if (err) {
@@ -91,7 +91,7 @@ const loginUser = (req, res, next) => {
     }
 
     if (user) {
-      const token = User.generateJWT(user.email, user.id);
+      const token = User.generateJWT(user.username, user.id);
       user.password = undefined;
       return res.json({ user, token });
     }
