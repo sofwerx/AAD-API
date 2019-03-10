@@ -12,17 +12,35 @@ const usersIndex = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const props = req.body.user;
-
-  User.create({ ...props })
-    .then((user) => {
-      console.log(user);
-      const token = User.generateJWT(user[0].email, user[0].id);
-      return res.json({
-        user: user[0],
-        token
+  const { username, email, password } = req.body.user;
+  // Validate inputs
+  if (!username) {
+    return res.status(422).json({ errors: { Username: "can't be blank" } });
+  }
+  if (!email) {
+    return res.status(422).json({ errors: { Email: "can't be blank" } });
+  }
+  if (!password) {
+    return res.status(422).json({ errors: { Password: "can't be blank" } });
+  }
+  // Search for Users with username.
+  return User.find({ username }).then((userRecordByUsername) => {
+    // Throw error if User with Username is found.
+    if (userRecordByUsername.length > 0) return res.status(422).json({ errors: { Warning: ': Username already in use.' } });
+    return User.find({ email });
+  }).then((userRecordByEmail) => {
+    // Throw error if User with email is found.
+    if (userRecordByEmail.length > 0) return res.status(422).json({ errors: { Warning: ': Email already in use.' } });
+    // Return new User if valid.
+    return User.create({ ...props })
+      .then((newUserRecord) => {
+        const token = User.generateJWT(newUserRecord[0].username, newUserRecord[0].id);
+        return res.json({
+          user: newUserRecord[0],
+          token
+        });
       });
-    })
-    .catch(next);
+  }).catch(next);
 };
 
 const updateUser = (req, res, next) => {
@@ -46,7 +64,6 @@ const getUser = (req, res, next) => {
 };
 
 const getCurrentUser = (req, res, next) => {
-  console.log(req.payload);
   return User.findById(req.payload.id)
     .then(user => res.json({
       user
