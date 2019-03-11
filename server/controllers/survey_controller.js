@@ -6,7 +6,7 @@ const surveyIndex = (req, res, next) => {
     where = { is_active: req.query.isActive };
   }
 
-  Survey.find(where)
+  return Survey.find(where)
     .then(surveys => res.json({
       surveys
     }))
@@ -26,7 +26,7 @@ const getSurvey = (req, res, next) => {
     .then((questionRecords) => {
       questions = questionRecords;
 
-      Promise.all(questions.map(populateQuestionAnswerOptions))
+      return Promise.all(questions.map(populateQuestionAnswerOptions))
         .then(() => {
           constructedSurvey.questions = questions;
           res.json({
@@ -57,7 +57,7 @@ const deleteSurvey = (req, res, next) => {
 const getSurveysByToolId = (req, res, next) => {
   const toolId = req.params.tool_id;
 
-  Survey.find({ tool_id: toolId })
+  return Survey.find({ tool_id: toolId })
     .then(surveys => res.json({
       surveys
     }))

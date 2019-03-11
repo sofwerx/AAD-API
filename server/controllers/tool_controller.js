@@ -10,7 +10,7 @@ const toolsIndex = (req, res, next) => {
         return tool;
       });
 
-      Promise.all(tools.map(populateToolDetails))
+      return Promise.all(tools.map(populateToolDetails))
         .then(() => {
           // constructedSurvey.questions = questions;
           return res.json({
