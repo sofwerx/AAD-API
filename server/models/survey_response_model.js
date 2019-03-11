@@ -4,11 +4,11 @@ const name = 'SurveyResponse';
 const tableName = 'SurveyResponse';
 
 const selectableProps = [
-  'id',
+  'SurveyResponse.id',
   'user_id',
   'survey_id',
   'is_public',
-  'created_at'
+  'SurveyResponse.created_at'
 ];
 
 module.exports = (knex) => {
@@ -20,7 +20,12 @@ module.exports = (knex) => {
   });
 
   const findAllByUserId = (userId) => {
-    return knexHelper.find({ user_id: userId });
+    return knex.select(...selectableProps, 'Survey.survey_name', 'Tool.tool_name  ')
+      .from(tableName)
+      .join('Survey', 'Survey.id', 'SurveyResponse.survey_id')
+      .join('Tool', 'Tool.id', 'Survey.tool_id')
+      .where({ user_id: userId })
+      .timeout(1000);
   };
 
   return {
