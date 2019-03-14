@@ -23,22 +23,23 @@ npm -v
 //Default Connection Information
 database: 'postgres',
 user: 'postgres',
-password: 'postgres',
-port: 32769
+password: 'example',
+port: 5432
 ```
 
 ### Environment Variables
 Create a `.env` file at directory root to override defaults.
 ````
 NODE_ENV:           [development]
-PUBLIC_URL:         [http://localhost:3001]
+PUBLIC_URL:         [http://localhost:3001] #Incoming Calls
 SECRET:             [secret]
-PORT:               [3000]
-DATABASE_CLIENT:    [pg]
-DATABASE_URL:       [postgres://localhost/aad]
+PORT:               [3000] #Express internal port
+
+#DOCKER-ENV-VARIABLES
+EXPOSED_PORT:       [3000] #Docker port to expose
 ````
 
-### Installing
+### Installing Locally
 1. Clone this repo.  [[AAD-API GITHUB]](https://github.com/sofwerx/AAD-API).
 2. Alter `knexfile.js` with postgres login credentials.
 3. `npm install` to install all required dependencies.
@@ -58,6 +59,13 @@ Should be able to hit a sample endpoint.
 * `npm run db:rollback` - Rollback DB Schema.
 * `npm run db:load` - Performs DB seed. CAUTION: Wipes data.
 * `npm run db:currentVersion` - Returns current DB version.
+
+## Docker Setup
+To test docker functionality. You will need to install [Docker](https://docs.docker.com/compose/install/) locally.
+* `docker-compose build` - Builds aad-postgres and aad-api containers
+* `docker-compose up` - Creates and attaches container instances.
+* `docker-compose down` - Stop Container instances.
+* `docker exec aad-api knex seed:run` - Necessary on initial setup.
 
 ## Application Structure
 

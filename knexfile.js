@@ -1,13 +1,16 @@
+const DATABASE_CLIENT = process.env.DATABASE_CLIENT || 'pg';
+const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost/aad';
+
 module.exports = {
 
   development: {
-    client: 'postgresql',
-    connection: {
-      database: 'postgres',
-      user: 'postgres',
-      password: 'postgres',
-      port: 32769
-    },
+    client: 'postgres',
+    connection: DATABASE_URL,
+    // LOCAL TESTING Credentials
+    // database: 'postgres',
+    // user: 'postgres',
+    // password: 'example',
+    // port: 5432,
     migrations: {
       tableName: 'knex_migrations',
       directory: `${__dirname}/db/migrations`
