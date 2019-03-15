@@ -7,7 +7,7 @@ x-logging:
     max-file: '5'
   driver: json-file
 
-networks: 
+networks:
 
   default:
     driver: bridge
@@ -29,9 +29,12 @@ services:
     networks:
       - default
     environment:
-      POSTGRES_DB: ${AAD_POSTGRES_DB}
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
       PGDATA: /var/lib/postgresql/data
-      POSTGRES_PASSWORD: ${AAD_POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
     volumes:
       - "aad-postgres-data:/var/lib/postgresql/data"
     logging: *default-logging
@@ -43,11 +46,13 @@ services:
     hostname: aad-api
     restart: always
     ports:
-      - 3000:3000
+      - ${EXPOSED_PORT:-3000}:${PORT:-3000}
     environment:
-      PUBLIC_URL: http://localhost:3001
+      PUBLIC_URL: ${PUBLIC_URL}
       DATABASE_CLIENT: pg
-      DATABASE_URL: "postgres://postgres:${AAD_POSTGRES_PASSWORD}@aad-postgres/${AAD_POSTGRES_DB}"
+      DATABASE_URL: "postgres://postgres:example@aad-postgres/$postgres"
+    links:
+      - aad-postgres
     networks:
       - default
     volumes:
