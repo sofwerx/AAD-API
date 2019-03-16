@@ -1,4 +1,5 @@
 const { SurveyResponse, Answer } = require('../models');
+const { createError, BAD_REQUEST } = require('../helpers/error_helper');
 
 const surveyResponseIndex = (req, res, next) => {
   let where = {};
