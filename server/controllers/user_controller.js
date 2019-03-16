@@ -1,6 +1,6 @@
 const passport = require('passport');
 const jwt = require('express-jwt');
-const { SurveyResponse, User } = require('../models');
+const { SurveyResponse, User, Answer } = require('../models');
 
 const usersIndex = (req, res, next) => {
   User.findAll()
@@ -89,10 +89,19 @@ const getUserPermissions = (req, res, next) => {
 const getSurveyResponsesByUserId = (req, res, next) => {
   const userId = req.params.user_id;
   SurveyResponse.findAllByUserId(userId)
-    .then(surveyResponses => res.json({
-      surveyResponses
-    }))
-    .catch(next);
+    .then(
+      (surveyResponses) => {
+        return Promise.all(surveyResponses.map(
+          surveyResponse => retrieveSurveyResponseAnswers(surveyResponse)
+        ));
+      }
+    )
+    .then((surveyResponses) => {
+      console.log(surveyResponses);
+      return res.json({
+        surveyResponses
+      });
+    }).catch(next);
 };
 
 const loginUser = (req, res, next) => {
@@ -114,6 +123,14 @@ const loginUser = (req, res, next) => {
     }
     return res.status(422).json(info);
   })(req, res, next);
+};
+
+const retrieveSurveyResponseAnswers = (surveyResponse) => {
+  return Answer.findAllBySurveyResponseId(surveyResponse.id)
+    .then((answerRecords) => {
+      surveyResponse.answers = answerRecords;
+      return surveyResponse;
+    });
 };
 
 module.exports = {
