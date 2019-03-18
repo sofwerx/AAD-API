@@ -7,7 +7,8 @@ const {
   createTool,
   getTool,
   toolsIndex,
-  getToolSurveys
+  getToolSurveys,
+  getSurveyResponsesByToolId
 } = require('../controllers/tool_controller');
 
 const {
@@ -22,6 +23,10 @@ router.route('/tools')
 router.route('/tools/:tool_id/surveys')
   .all(auth.required)
   .get(getToolSurveys);
+
+router.route('/tools/:tool_id/survey_responses')
+  .all(auth.required)
+  .get(getSurveyResponsesByToolId);
 
 router.route('/tools/:tool_id/surveys/:survey_id')
   .all(auth.required)

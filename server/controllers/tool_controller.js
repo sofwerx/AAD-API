@@ -1,5 +1,5 @@
 const {
-  Tool, ToolDetail, Survey
+  Tool, ToolDetail, Survey, SurveyResponse, Answer
 } = require('../models');
 
 const toolsIndex = (req, res, next) => {
@@ -64,7 +64,32 @@ const getToolSurveys = (req, res, next) => {
     .catch(next);
 };
 
-// Private Method populateToolDetails
+const getSurveyResponsesByToolId = (req, res, next) => {
+  const toolId = req.params.tool_id;
+  SurveyResponse.findAllByToolId(toolId)
+    .then(
+      (surveyResponses) => {
+        return Promise.all(surveyResponses.map(
+          surveyResponse => retrieveSurveyResponseAnswers(surveyResponse)
+        ));
+      }
+    )
+    .then((surveyResponses) => {
+      return res.json({
+        surveyResponses
+      });
+    }).catch(next);
+};
+
+// Private Methods
+const retrieveSurveyResponseAnswers = (surveyResponse) => {
+  return Answer.findAllBySurveyResponseId(surveyResponse.id)
+    .then((answerRecords) => {
+      surveyResponse.answers = answerRecords;
+      return surveyResponse;
+    });
+};
+
 const populateToolDetails = (tool) => {
   return ToolDetail.find({ tool_id: tool.id })
     .then((toolDetails) => {
@@ -76,5 +101,6 @@ module.exports = {
   createTool,
   getTool,
   toolsIndex,
-  getToolSurveys
+  getToolSurveys,
+  getSurveyResponsesByToolId
 };
